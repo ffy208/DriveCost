@@ -33,7 +33,6 @@ public class GasolineCar extends Vehicle {
     //EFFECTS: provide total cost, current mileage and cost per kilometer
     public String getVehicleInfo() {
         String vehicleInfo;
-        costPerKilometer();
         vehicleInfo = vehicleName + ":\nTotal Cost Until Today:  "
                 + totalCostUntilToday() + "\nCurrent Mileage in KM: "
                 + currentMileage + "\nCost Per Kilometer: " + costPerKilometer();

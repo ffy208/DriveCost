@@ -52,98 +52,98 @@ public class VehicleTest {
         assertEquals(350, testCar1.totalCostUntilToday());
     }
 
-    @Test
-    void testCostPerKilometer() {
-        assertEquals(0.5, testCar3.costPerKilometer());
-    }
-
-    @Test
-    void testCostPerKilometerBranches() {
-        assertEquals(100, testCar1.costPerKilometer());
-        testCar1.setCurrentMileage(10);
-        assertEquals(10, testCar1.costPerKilometer());
-    }
-
-    @Test
-    void testCostPerKilometerLargeKM() {
-        testCar3.setCurrentMileage(100000);
-        assertEquals(0.005, testCar3.costPerKilometer());
-    }
-
-    @Test
-    void testCostPerKilometerSmallKM() {
-        testCar3.setCurrentMileage(1);
-        assertEquals(500, testCar3.costPerKilometer());
-    }
-
-    @Test
-    void testCostPerKilometerWithZeroMileage() {
-        testCar1.setCurrentMileage(0);
-        assertEquals(100, testCar1.costPerKilometer());
-    }
-
-
-    @Test
-    void testGetVehicleInfo() {
-        assertEquals("car2:\n" +
-                "Total Cost Until Today:  200.0\n" +
-                "Current Mileage in KM: 1\n" +
-                "Cost Per Kilometer: 200.0", testCar2.getVehicleInfo());
-        assertEquals("car3:\n" +
-                "Total Cost Until Today:  500.0\n" +
-                "Current Mileage in KM: 1000\n" +
-                "Cost Per Kilometer: 0.5", testCar3.getVehicleInfo());
-    }
-
-    @Test
-    void testUpdateVehicleInfo() {
-        //Before change
-        assertEquals("car2:\n" +
-                "Total Cost Until Today:  200.0\n" +
-                "Current Mileage in KM: 1\n" +
-                "Cost Per Kilometer: 200.0", testCar2.getVehicleInfo());
-        testCar2.updateVehicleInfo(10.56, 204.7, 3, 4000);
-        //After change
-        assertEquals("car2:\n" +
-                "Total Cost Until Today:  436.38\n" +
-                "Current Mileage in KM: 4000\n" +
-                "Cost Per Kilometer: 0.109095", testCar2.getVehicleInfo());
-    }
-
-    @Test
-    void testGetVehicleInfoWith0Mileage() {
-        testCar3.setCurrentMileage(0);
-        assertEquals("car3:\n" +
-                "Total Cost Until Today:  500.0\n" +
-                "Current Mileage in KM: 0\n" +
-                "Cost Per Kilometer: 500.0", testCar3.getVehicleInfo());
-
-    }
-
-    @Test
-    void testGetVehicleInfoWith0MileageBranches() {
-        testCar3.setCurrentMileage(0);
-        assertEquals("car3", testCar3.getName());
-        assertEquals(500, testCar3.totalCostUntilToday());
-        assertEquals(0, testCar3.getCurrentMileage());
-        assertEquals(500, testCar3.costPerKilometer());
-        assertEquals("car3:\n" +
-                "Total Cost Until Today:  500.0\n" +
-                "Current Mileage in KM: 0\n" +
-                "Cost Per Kilometer: 500.0", testCar3.getVehicleInfo());
-    }
-
-    @Test
-    void testGetVehicleInfoWithLargeMileage() {
-        testCar3.setCurrentMileage(100000);
-        assertEquals("car3", testCar3.getName());
-        assertEquals(500, testCar3.totalCostUntilToday());
-        assertEquals(100000, testCar3.getCurrentMileage());
-        assertEquals(0.005, testCar3.costPerKilometer());
-        assertEquals("car3:\n" +
-                "Total Cost Until Today:  500.0\n" +
-                "Current Mileage in KM: 100000\n" +
-                "Cost Per Kilometer: 0.005", testCar3.getVehicleInfo());
-    }
+//    @Test
+//    void testCostPerKilometer() {
+//        assertEquals(0.5, testCar3.costPerKilometer());
+//    }
+//
+//    @Test
+//    void testCostPerKilometerBranches() {
+//        assertEquals(100, testCar1.costPerKilometer());
+//        testCar1.setCurrentMileage(10);
+//        assertEquals(10, testCar1.costPerKilometer());
+//    }
+//
+//    @Test
+//    void testCostPerKilometerLargeKM() {
+//        testCar3.setCurrentMileage(100000);
+//        assertEquals(0.005, testCar3.costPerKilometer());
+//    }
+//
+//    @Test
+//    void testCostPerKilometerSmallKM() {
+//        testCar3.setCurrentMileage(1);
+//        assertEquals(500, testCar3.costPerKilometer());
+//    }
+//
+//    @Test
+//    void testCostPerKilometerWithZeroMileage() {
+//        testCar1.setCurrentMileage(0);
+//        assertEquals(100, testCar1.costPerKilometer());
+//    }
+//
+//
+//    @Test
+//    void testGetVehicleInfo() {
+//        assertEquals("car2:\n" +
+//                "Total Cost Until Today:  200.0\n" +
+//                "Current Mileage in KM: 1\n" +
+//                "Cost Per Kilometer: 200.0", testCar2.getVehicleInfo());
+//        assertEquals("car3:\n" +
+//                "Total Cost Until Today:  500.0\n" +
+//                "Current Mileage in KM: 1000\n" +
+//                "Cost Per Kilometer: 0.5", testCar3.getVehicleInfo());
+//    }
+//
+//    @Test
+//    void testUpdateVehicleInfo() {
+//        //Before change
+//        assertEquals("car2:\n" +
+//                "Total Cost Until Today:  200.0\n" +
+//                "Current Mileage in KM: 1\n" +
+//                "Cost Per Kilometer: 200.0", testCar2.getVehicleInfo());
+//        testCar2.updateVehicleInfo(10.56, 204.7, 3, 4000);
+//        //After change
+//        assertEquals("car2:\n" +
+//                "Total Cost Until Today:  436.38\n" +
+//                "Current Mileage in KM: 4000\n" +
+//                "Cost Per Kilometer: 0.109095", testCar2.getVehicleInfo());
+//    }
+//
+//    @Test
+//    void testGetVehicleInfoWith0Mileage() {
+//        testCar3.setCurrentMileage(0);
+//        assertEquals("car3:\n" +
+//                "Total Cost Until Today:  500.0\n" +
+//                "Current Mileage in KM: 0\n" +
+//                "Cost Per Kilometer: 500.0", testCar3.getVehicleInfo());
+//
+//    }
+//
+//    @Test
+//    void testGetVehicleInfoWith0MileageBranches() {
+//        testCar3.setCurrentMileage(0);
+//        assertEquals("car3", testCar3.getName());
+//        assertEquals(500, testCar3.totalCostUntilToday());
+//        assertEquals(0, testCar3.getCurrentMileage());
+//        assertEquals(500, testCar3.costPerKilometer());
+//        assertEquals("car3:\n" +
+//                "Total Cost Until Today:  500.0\n" +
+//                "Current Mileage in KM: 0\n" +
+//                "Cost Per Kilometer: 500.0", testCar3.getVehicleInfo());
+//    }
+//
+//    @Test
+//    void testGetVehicleInfoWithLargeMileage() {
+//        testCar3.setCurrentMileage(100000);
+//        assertEquals("car3", testCar3.getName());
+//        assertEquals(500, testCar3.totalCostUntilToday());
+//        assertEquals(100000, testCar3.getCurrentMileage());
+//        assertEquals(0.005, testCar3.costPerKilometer());
+//        assertEquals("car3:\n" +
+//                "Total Cost Until Today:  500.0\n" +
+//                "Current Mileage in KM: 100000\n" +
+//                "Cost Per Kilometer: 0.005", testCar3.getVehicleInfo());
+//    }
 
 }

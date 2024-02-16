@@ -32,24 +32,10 @@ public abstract class Vehicle {
     }
 
     // EFFECTS: calculate the cost per kilometer
-    public double costPerKilometer() {
-        double costPerKilometer;
-        if (this.currentMileage == 0) {
-            costPerKilometer = totalCostUntilToday();
-        } else {
-            costPerKilometer = totalCostUntilToday() / this.currentMileage;
-        }
-        return costPerKilometer;
-    }
+    public abstract double costPerKilometer();
 
     //EFFECTS: provide total cost, current mileage and cost per kilometer
-    public String getVehicleInfo() {
-        String vehicleInfo;
-        vehicleInfo = vehicleName + ":\nTotal Cost Until Today:  "
-                + totalCostUntilToday() + "\nCurrent Mileage in KM: "
-                + currentMileage + "\nCost Per Kilometer: " + costPerKilometer();
-        return vehicleInfo;
-    }
+    public abstract String getVehicleInfo();
 
     //MODIFIES: this
     //EFFECTS: update vehicle information.
