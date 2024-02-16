@@ -70,8 +70,8 @@ public abstract class Vehicle {
         return this.monthlyExpenses;
     }
 
-    public void addOtherExpenses(double expenses) {
-        this.otherExpenses += expenses;
+    public void setOtherExpenses(double expenses) {
+        this.otherExpenses = expenses;
     }
 
     public double getOtherExpenses() {
@@ -93,11 +93,6 @@ public abstract class Vehicle {
     public int getCurrentMileage() {
         return this.currentMileage;
     }
-
-    // !!! Do it later
-    //public void setExpectedMileage(int mileage) {
-    //    this.expectedMileage = mileage;
-    //}
 
     public int getExpectedMileage() {
         return this.expectedMileage;

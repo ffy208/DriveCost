@@ -5,17 +5,17 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class GasCarTest {
-    private GasCar testCar1;
-    private GasCar testCar2;
-    private GasCar testCar3;
+public class GasolineCarTest {
+    private GasolineCar testCar1;
+    private GasolineCar testCar2;
+    private GasolineCar testCar3;
 
     @BeforeEach
     public void setUp(){
-        testCar1 = new GasCar("car1", 100);
-        testCar2 = new GasCar("car2", 200);
+        testCar1 = new GasolineCar("car1", 100);
+        testCar2 = new GasolineCar("car2", 200);
         testCar2.setCurrentMileage(1);
-        testCar3 = new GasCar("car3", 300);
+        testCar3 = new GasolineCar("car3", 300);
         testCar3.setMonthsOwned(10);
         testCar3.setMonthlyExpenses(20);
         testCar3.setCurrentMileage(1000);
@@ -41,7 +41,7 @@ public class GasCarTest {
         testCar2.setMonthlyExpenses(20);
         testCar2.setMonthsOwned(0);
         assertEquals(200, testCar2.totalCostUntilToday());
-        testCar2.addOtherExpenses(100);
+        testCar2.setOtherExpenses(100);
         assertEquals(300, testCar2.totalCostUntilToday());
         testCar2.setGasolineCost(200);
         assertEquals(500, testCar2.totalCostUntilToday());
@@ -53,7 +53,7 @@ public class GasCarTest {
         testCar1.setMonthlyExpenses(10);
         testCar1.setMonthsOwned(5);
         assertEquals(150, testCar1.totalCostUntilToday());
-        testCar1.addOtherExpenses(200);
+        testCar1.setOtherExpenses(200);
         assertEquals(350, testCar1.totalCostUntilToday());
         testCar1.setGasolineCost(200);
         assertEquals(550, testCar1.totalCostUntilToday());

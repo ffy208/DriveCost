@@ -41,7 +41,7 @@ public class ElectricCarTest {
         testCar2.setMonthlyExpenses(20);
         testCar2.setMonthsOwned(0);
         assertEquals(200, testCar2.totalCostUntilToday());
-        testCar2.addOtherExpenses(100);
+        testCar2.setOtherExpenses(100);
         assertEquals(300, testCar2.totalCostUntilToday());
         testCar2.setChargingCost(200);
         assertEquals(500, testCar2.totalCostUntilToday());
@@ -53,7 +53,7 @@ public class ElectricCarTest {
         testCar1.setMonthlyExpenses(10);
         testCar1.setMonthsOwned(5);
         assertEquals(150, testCar1.totalCostUntilToday());
-        testCar1.addOtherExpenses(200);
+        testCar1.setOtherExpenses(200);
         assertEquals(350, testCar1.totalCostUntilToday());
         testCar1.setChargingCost(200);
         assertEquals(550, testCar1.totalCostUntilToday());

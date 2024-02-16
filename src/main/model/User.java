@@ -7,7 +7,7 @@ import java.util.List;
 // Represents a DriveCostPro user having a name and their List Cars.
 public class User {
     private final String userName;               // User's name
-    private List<Vehicle> userVehicles;    // User's vehicles in a list
+    private final List<Vehicle> userVehicles;    // User's vehicles in a list
 
     //REQUIRES: name has a non-zero length
     //EFFECTS: username = name, and create a new userVehicles list
@@ -18,6 +18,7 @@ public class User {
 
     //MODIFIES: this
     //EFFECTS: add the given vehicle to userVehicles
+    //         return true for success, false otherwise
     public void addVehicle(Vehicle vehicle) {
         if (!(userVehicles.contains(vehicle))) {
             this.userVehicles.add(vehicle);
@@ -26,10 +27,13 @@ public class User {
 
     // MODIFIES: this
     // EFFECTS: remove the given vehicle from userVehicles
-    public void removeVehicle(Vehicle vehicle) {
+    //         return true for success, false otherwise
+    public boolean removeVehicle(Vehicle vehicle) {
         if (userVehicles.contains(vehicle)) {
             this.userVehicles.remove(vehicle);
+            return true;
         }
+        return false;
     }
 
     //REQUIRES: userVehicles is not empty

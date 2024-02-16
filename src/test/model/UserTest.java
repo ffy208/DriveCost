@@ -15,9 +15,9 @@ public class UserTest {
     @BeforeEach
     void runBefore() {
         testUser = new User("Elise");
-        testCar1 = new GasCar("car1", 100);
-        testCar2 = new GasCar("car2", 200);
-        testCar3 = new GasCar("car3", 300);
+        testCar1 = new GasolineCar("car1", 100);
+        testCar2 = new GasolineCar("car2", 200);
+        testCar3 = new GasolineCar("car3", 300);
     }
 
     @Test

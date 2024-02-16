@@ -1,18 +1,18 @@
 package model;
 
 // Represents a Gasoline Gas of same as general vehicle type, but it has own gasoline cost filed.
-public class GasCar extends Vehicle {
+public class GasolineCar extends Vehicle {
     private double gasolineCost;
 
     //REQUIRES: name has a non-zero length, purchaseCost =>  0;
     //EFFECTS: Call super to assign name and purchaseCost. Initialize gasoline cost as 0.
-    public GasCar(String carName, double purchaseCost) {
+    public GasolineCar(String carName, double purchaseCost) {
         super(carName, purchaseCost);
         this.gasolineCost = 0;
     }
 
     @Override
-    //EFFECTS: calculate the total cost for this GasCar
+    //EFFECTS: calculate the total cost for this GasolineCar
     public double totalCostUntilToday() {
         return super.totalCostUntilToday() + this.gasolineCost;
     }
