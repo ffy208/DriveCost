@@ -43,23 +43,23 @@ public class UsersTest {
     public void testRegisterUserNotExist() {
         assertTrue(testUsers.getUsers().isEmpty());
         assertTrue(testUsers.registerUser("Matthew"));
-        assertEquals(1,testUsers.getUsers().size());
+        assertEquals(1, testUsers.getUsers().size());
     }
 
     @Test
     public void testRegisterUserExistInUsers() {
         assertTrue(testUsers.getUsers().isEmpty());
         testUsers.addUser(testUser1);
-        assertEquals(1,testUsers.getUsers().size());
+        assertEquals(1, testUsers.getUsers().size());
         assertFalse(testUsers.registerUser("John"));
-        assertEquals(1,testUsers.getUsers().size());
+        assertEquals(1, testUsers.getUsers().size());
     }
 
     @Test
     public void testRemoveUserForOne() {
         assertTrue(testUsers.getUsers().isEmpty());
         testUsers.addUser(testUser1);
-        assertEquals(1,testUsers.getUsers().size());
+        assertEquals(1, testUsers.getUsers().size());
         testUsers.removeUser(testUser1);
         assertTrue(testUsers.getUsers().isEmpty());
     }
@@ -68,7 +68,7 @@ public class UsersTest {
     public void testRemoveUserInTheList() {
         assertTrue(testUsers.getUsers().isEmpty());
         testUsers.addUser(testUser1);
-        assertEquals(1,testUsers.getUsers().size());
+        assertEquals(1, testUsers.getUsers().size());
         assertTrue(testUsers.removeUser(testUser1));
         assertTrue(testUsers.getUsers().isEmpty());
     }
@@ -77,9 +77,9 @@ public class UsersTest {
     public void testRemoveUserNotInTheList() {
         assertTrue(testUsers.getUsers().isEmpty());
         testUsers.addUser(testUser1);
-        assertEquals(1,testUsers.getUsers().size());
+        assertEquals(1, testUsers.getUsers().size());
         assertFalse(testUsers.removeUser(testUser2));
-        assertEquals(1,testUsers.getUsers().size());
+        assertEquals(1, testUsers.getUsers().size());
     }
 
 }

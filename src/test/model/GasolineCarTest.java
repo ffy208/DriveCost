@@ -11,7 +11,7 @@ public class GasolineCarTest {
     private GasolineCar testCar3;
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         testCar1 = new GasolineCar("car1", 100);
         testCar2 = new GasolineCar("car2", 200);
         testCar2.setCurrentMileage(1);
@@ -31,7 +31,7 @@ public class GasolineCarTest {
         assertEquals(0, testCar1.getMonthsOwned());
         assertEquals(0, testCar1.getCurrentMileage());
         assertEquals(0, testCar1.getExpectedMileage());
-        assertEquals(0,testCar1.getGasolineCost());
+        assertEquals(0, testCar1.getGasolineCost());
     }
 
     @Test
@@ -62,7 +62,7 @@ public class GasolineCarTest {
 
     @Test
     void testCostPerKilometer() {
-        assertEquals(0.75,testCar3.costPerKilometer());
+        assertEquals(0.75, testCar3.costPerKilometer());
     }
 
     @Test
@@ -90,7 +90,7 @@ public class GasolineCarTest {
                 "Total Cost Until Today:  200.0\n" +
                 "Current Mileage in KM: 1\n" +
                 "Cost Per Kilometer: 200.0", testCar2.getVehicleInfo());
-        testCar2.updateVehicleInfo(10.56,204.7,3,200,4000);
+        testCar2.updateVehicleInfo(10.56, 204.7, 3, 200, 4000);
         //After change
         assertEquals("car2:\n" +
                 "Total Cost Until Today:  636.38\n" +
