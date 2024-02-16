@@ -94,7 +94,7 @@ public abstract class Vehicle {
         return this.currentMileage;
     }
 
-    // !!! Todo
+    // !!! Do it later
     //public void setExpectedMileage(int mileage) {
     //    this.expectedMileage = mileage;
     //}
