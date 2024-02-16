@@ -52,4 +52,32 @@ public class UsersTest {
         assertFalse(testUsers.registerUser("John"));
         assertEquals(1,testUsers.getUsers().size());
     }
+
+    @Test
+    public void testRemoveUserForOne() {
+        assertTrue(testUsers.getUsers().isEmpty());
+        testUsers.addUser(testUser1);
+        assertEquals(1,testUsers.getUsers().size());
+        testUsers.removeUser(testUser1);
+        assertTrue(testUsers.getUsers().isEmpty());
+    }
+
+    @Test
+    public void testRemoveUserInTheList() {
+        assertTrue(testUsers.getUsers().isEmpty());
+        testUsers.addUser(testUser1);
+        assertEquals(1,testUsers.getUsers().size());
+        assertTrue(testUsers.removeUser(testUser1));
+        assertTrue(testUsers.getUsers().isEmpty());
+    }
+
+    @Test
+    public void testRemoveUserNotInTheList() {
+        assertTrue(testUsers.getUsers().isEmpty());
+        testUsers.addUser(testUser1);
+        assertEquals(1,testUsers.getUsers().size());
+        assertFalse(testUsers.removeUser(testUser2));
+        assertEquals(1,testUsers.getUsers().size());
+    }
+
 }

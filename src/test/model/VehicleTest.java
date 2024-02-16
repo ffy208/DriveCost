@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class VehicleTest {
     private Vehicle testCar1;
@@ -56,6 +57,18 @@ public class VehicleTest {
     void testCostPerKilometer() {
         assertEquals(0.5,testCar3.costPerKilometer());
     }
+
+    @Test
+    void testCostPerKilometerWithZeroMileage() {
+        testCar1.setCurrentMileage(0);
+        try {
+            testCar1.costPerKilometer();
+            fail("Expected an IllegalArgumentException to be thrown");
+        } catch (IllegalArgumentException e) {
+            // want this, pass
+        }
+    }
+
 
     @Test
     void testGetVehicleInfo() {

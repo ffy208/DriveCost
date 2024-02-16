@@ -19,13 +19,16 @@ public class ElectricCar extends Vehicle {
 
     @Override
     // EFFECTS: calculate the cost per kilometer
-    public double costPerKilometer() {
-        return totalCostUntilToday() / currentMileage;
+    public double costPerKilometer() throws IllegalArgumentException {
+        if (this.currentMileage == 0) {
+            throw new IllegalArgumentException("Current mileage cannot be zero.");
+        }
+        return totalCostUntilToday() / this.currentMileage;
     }
 
     @Override
     //EFFECTS: provide total cost, current mileage and cost per kilometer
-    public String getVehicleInfo() {
+    public String getVehicleInfo() throws IllegalArgumentException {
         return vehicleName + ":\nTotal Cost Until Today:  "
                 + totalCostUntilToday() + "\nCurrent Mileage in KM: "
                 + currentMileage + "\nCost Per Kilometer: " + costPerKilometer();

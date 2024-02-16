@@ -273,8 +273,6 @@ public class DriveCostProApp {
     // EFFECTS: displays options for updating the information
     private void displayUpdatingVehicleInformationMenu(Vehicle vehicle) {
         System.out.println("Updating information for " + vehicle.getName());
-        System.out.println("Current information:");
-        System.out.println(vehicle.getVehicleInfo());
         System.out.println("Please choose one to update: ");
         System.out.println("1 -> Monthly Expenses");
         System.out.println("2 -> Other Expenses");
@@ -345,7 +343,12 @@ public class DriveCostProApp {
     private void getVehicleCost(Vehicle vehicle) {
         System.out.println("Cost information for " + vehicle.getName() + ":");
         System.out.println("Total cost until today: " + vehicle.totalCostUntilToday());
-        System.out.println("Cost per kilometer: " + vehicle.costPerKilometer());
+        try {
+            vehicle.costPerKilometer();
+            System.out.println("Cost per kilometer: " + vehicle.costPerKilometer());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Please set current mileage before calculate cost per KM");
+        }
     }
 
     // MODIFIES: this
