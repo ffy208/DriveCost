@@ -20,11 +20,13 @@ public class GasolineCar extends Vehicle {
     @Override
     // EFFECTS: calculate the cost per kilometer
     public double costPerKilometer() {
+        double costPerKilometer;
         if (this.currentMileage == 0) {
-            return totalCostUntilToday();
+            costPerKilometer = totalCostUntilToday();
         } else {
-            return totalCostUntilToday() / this.currentMileage;
+            costPerKilometer = totalCostUntilToday() / this.currentMileage;
         }
+        return costPerKilometer;
     }
 
     @Override

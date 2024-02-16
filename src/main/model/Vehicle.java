@@ -33,11 +33,13 @@ public abstract class Vehicle {
 
     // EFFECTS: calculate the cost per kilometer
     public double costPerKilometer() {
+        double costPerKilometer;
         if (this.currentMileage == 0) {
-            return totalCostUntilToday();
+            costPerKilometer = totalCostUntilToday();
         } else {
-            return totalCostUntilToday() / this.currentMileage;
+            costPerKilometer = totalCostUntilToday() / this.currentMileage;
         }
+        return costPerKilometer;
     }
 
     //EFFECTS: provide total cost, current mileage and cost per kilometer

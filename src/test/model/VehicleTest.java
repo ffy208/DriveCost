@@ -58,6 +58,13 @@ public class VehicleTest {
     }
 
     @Test
+    void testCostPerKilometerBranches() {
+        assertEquals(100, testCar1.costPerKilometer());
+        testCar1.setCurrentMileage(10);
+        assertEquals(10, testCar1.costPerKilometer());
+    }
+
+    @Test
     void testCostPerKilometerLargeKM() {
         testCar3.setCurrentMileage(100000);
         assertEquals(0.005, testCar3.costPerKilometer());
@@ -112,4 +119,31 @@ public class VehicleTest {
                 "Cost Per Kilometer: 500.0", testCar3.getVehicleInfo());
 
     }
+
+    @Test
+    void testGetVehicleInfoWith0MileageBranches() {
+        testCar3.setCurrentMileage(0);
+        assertEquals("car3", testCar3.getName());
+        assertEquals(500, testCar3.totalCostUntilToday());
+        assertEquals(0, testCar3.getCurrentMileage());
+        assertEquals(500, testCar3.costPerKilometer());
+        assertEquals("car3:\n" +
+                "Total Cost Until Today:  500.0\n" +
+                "Current Mileage in KM: 0\n" +
+                "Cost Per Kilometer: 500.0", testCar3.getVehicleInfo());
+    }
+
+    @Test
+    void testGetVehicleInfoWithLargeMileage() {
+        testCar3.setCurrentMileage(100000);
+        assertEquals("car3", testCar3.getName());
+        assertEquals(500, testCar3.totalCostUntilToday());
+        assertEquals(100000, testCar3.getCurrentMileage());
+        assertEquals(0.005, testCar3.costPerKilometer());
+        assertEquals("car3:\n" +
+                "Total Cost Until Today:  500.0\n" +
+                "Current Mileage in KM: 100000\n" +
+                "Cost Per Kilometer: 0.005", testCar3.getVehicleInfo());
+    }
+
 }
