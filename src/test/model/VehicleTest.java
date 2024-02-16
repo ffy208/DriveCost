@@ -59,6 +59,18 @@ public class VehicleTest {
     }
 
     @Test
+    void testCostPerKilometerLargeKM() {
+        testCar3.setCurrentMileage(100000);
+        assertEquals(0.005,testCar3.costPerKilometer());
+    }
+
+    @Test
+    void testCostPerKilometersmallKM() {
+        testCar3.setCurrentMileage(1);
+        assertEquals(500,testCar3.costPerKilometer());
+    }
+
+    @Test
     void testCostPerKilometerWithZeroMileage() {
         testCar1.setCurrentMileage(0);
         try {
@@ -95,5 +107,15 @@ public class VehicleTest {
                 "Total Cost Until Today:  436.38\n" +
                 "Current Mileage in KM: 4000\n" +
                 "Cost Per Kilometer: 0.109095", testCar2.getVehicleInfo());
+    }
+
+    @Test
+    void testGetVehicleInfoWith0Mileage() {
+        testCar3.setCurrentMileage(0);
+        assertEquals("car3:\n" +
+                "Total Cost Until Today:  500.0\n" +
+                "Current Mileage in KM: 0\n" +
+                "Cost Per Kilometer need update Mileage first", testCar3.getVehicleInfo());
+
     }
 }

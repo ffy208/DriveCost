@@ -42,9 +42,18 @@ public abstract class Vehicle {
 
     //EFFECTS: provide total cost, current mileage and cost per kilometer
     public String getVehicleInfo() {
-        return vehicleName + ":\nTotal Cost Until Today:  "
-                + totalCostUntilToday() + "\nCurrent Mileage in KM: "
-                + currentMileage + "\nCost Per Kilometer: " + costPerKilometer();
+        String vehicleInfo;
+        try {
+            costPerKilometer();
+            vehicleInfo = vehicleName + ":\nTotal Cost Until Today:  "
+                    + totalCostUntilToday() + "\nCurrent Mileage in KM: "
+                    + currentMileage + "\nCost Per Kilometer: " + costPerKilometer();
+        } catch (IllegalArgumentException e) {
+            vehicleInfo = vehicleName + ":\nTotal Cost Until Today:  "
+                    + totalCostUntilToday() + "\nCurrent Mileage in KM: "
+                    + currentMileage + "\nCost Per Kilometer need update Mileage first";
+        }
+        return vehicleInfo;
     }
 
     //MODIFIES: this

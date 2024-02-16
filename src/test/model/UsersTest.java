@@ -27,6 +27,8 @@ public class UsersTest {
     @Test
     public void testFindUserNotExist() {
         assertTrue(testUsers.getUsers().isEmpty());
+        testUsers.addUser(testUser1);
+        testUsers.addUser(testUser2);
         assertNull(testUsers.findUser("Tom"));
     }
 

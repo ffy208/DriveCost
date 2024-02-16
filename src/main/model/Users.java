@@ -18,6 +18,8 @@ public class Users {
         for (User user : users) {
             if (user.getUserName().equals(name)) {
                 return user;
+            } else {
+                continue;
             }
         }
         return null;

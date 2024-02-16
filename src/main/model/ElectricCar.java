@@ -28,10 +28,19 @@ public class ElectricCar extends Vehicle {
 
     @Override
     //EFFECTS: provide total cost, current mileage and cost per kilometer
-    public String getVehicleInfo() throws IllegalArgumentException {
-        return vehicleName + ":\nTotal Cost Until Today:  "
-                + totalCostUntilToday() + "\nCurrent Mileage in KM: "
-                + currentMileage + "\nCost Per Kilometer: " + costPerKilometer();
+    public String getVehicleInfo() {
+        String vehicleInfo;
+        try {
+            costPerKilometer();
+            vehicleInfo = vehicleName + ":\nTotal Cost Until Today:  "
+                    + totalCostUntilToday() + "\nCurrent Mileage in KM: "
+                    + currentMileage + "\nCost Per Kilometer: " + costPerKilometer();
+        } catch (IllegalArgumentException e) {
+            vehicleInfo = vehicleName + ":\nTotal Cost Until Today:  "
+                    + totalCostUntilToday() + "\nCurrent Mileage in KM: "
+                    + currentMileage + "\nCost Per Kilometer need update Mileage first";
+        }
+        return vehicleInfo;
     }
 
     //MODIFIES: this
