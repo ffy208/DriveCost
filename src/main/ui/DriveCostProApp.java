@@ -343,12 +343,7 @@ public class DriveCostProApp {
     private void getVehicleCost(Vehicle vehicle) {
         System.out.println("Cost information for " + vehicle.getName() + ":");
         System.out.println("Total cost until today: " + vehicle.totalCostUntilToday());
-        try {
-            vehicle.costPerKilometer();
-            System.out.println("Cost per kilometer: " + vehicle.costPerKilometer());
-        } catch (IllegalArgumentException e) {
-            System.out.println("Please set current mileage before calculate cost per KM");
-        }
+        System.out.println("Cost per kilometer: " + vehicle.costPerKilometer());
     }
 
     // MODIFIES: this

@@ -31,13 +31,13 @@ public abstract class Vehicle {
         return purchaseCost + totalMonthlyExpenses + otherExpenses;
     }
 
-    // REQUIRES: this.currentMileage != 0;
     // EFFECTS: calculate the cost per kilometer
-    public double costPerKilometer() throws IllegalArgumentException {
+    public double costPerKilometer() {
         if (this.currentMileage == 0) {
-            throw new IllegalArgumentException("Current mileage cannot be zero.");
+            return totalCostUntilToday();
+        } else {
+            return totalCostUntilToday() / this.currentMileage;
         }
-        return totalCostUntilToday() / this.currentMileage;
     }
 
     //EFFECTS: provide total cost, current mileage and cost per kilometer
