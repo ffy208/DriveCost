@@ -1,27 +1,43 @@
 package ui;
 
 import model.*;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 // Drive Cost Pro application
 public class DriveCostProApp {
-    private final Users users;
+    private static final String JSON_STORE_VERIFICATION = "./data/Verification.json";
+    private String jsonStore;
+    private Users users;
     private User currentUser;
+    private ArrayList<String> usersList;
     private final Scanner input;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+    private JsonWriter autoJsonWriter;
+    private JsonReader autojsonReader;
 
     // EFFECTS: constructs a DriveCostPro application, initializes the user list and scanner for input,
     //          then runs the application
-    public DriveCostProApp() {
+    public DriveCostProApp() throws FileNotFoundException {
         users = new Users();
+
         input = new Scanner(System.in);
         input.useDelimiter("\n");
+        autoJsonWriter = new JsonWriter(JSON_STORE_VERIFICATION);
+        autojsonReader = new JsonReader(JSON_STORE_VERIFICATION);
         runApp();
     }
 
     // EFFECTS: runs the main loop of this application
     public void runApp() {
         boolean keepGoing = true;
+        loadVerification();
         while (keepGoing) {
             if (currentUser == null) {
                 keepGoing = loginMenuAndInput();
@@ -29,7 +45,31 @@ public class DriveCostProApp {
                 keepGoing = userMenuAndInput();
             }
         }
+        updateVerification();
         System.out.println("\nGoodbye!");
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads all users account from file
+    private void loadVerification() {
+        try {
+            usersList = autojsonReader.readUsersList();
+            System.out.println("Loaded System Data from " + JSON_STORE_VERIFICATION);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE_VERIFICATION);
+        }
+    }
+
+    // EFFECTS: update the all users information to file
+    private void updateVerification() {
+        try {
+            autoJsonWriter.open();
+            autoJsonWriter.write(users);
+            autoJsonWriter.close();
+            System.out.println("Saved to " + JSON_STORE_VERIFICATION);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE_VERIFICATION);
+        }
     }
 
     // EFFECTS: call display login menu and processes user input for it
@@ -56,23 +96,46 @@ public class DriveCostProApp {
     private boolean userMenuAndInput() {
         displayUserMenu();
         String command = input.next().toLowerCase();
-        switch (command) {
-            case "v":
-                viewVehicles();
-                break;
-            case "a":
-                addVehicle();
-                break;
-            case "d":
-                deleteUser();
-                break;
-            case "q":
-                return false;
-            default:
-                System.out.println("Invalid command");
-                break;
+        if (command.equals("v")) {
+            viewVehicles();
+        } else if (command.equals("a")) {
+            addVehicle();
+        } else if (command.equals("s")) {
+            saveUser();
+        } else if (command.equals("l")) {
+            loadUser();
+        } else if (command.equals("d")) {
+            deleteUser();
+        } else if (command.equals("q")) {
+            return false;
+        } else {
+            System.out.println("Invalid command");
         }
         return true;
+    }
+
+    // EFFECTS: saves the User to file
+    private void saveUser() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(currentUser);
+            jsonWriter.close();
+            System.out.println("Saved " + currentUser.getUserName() + " to " + jsonStore);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + jsonStore);
+        }
+
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads workroom from file
+    private void loadUser() {
+        try {
+            currentUser = jsonReader.read();
+            System.out.println("Loaded " + currentUser.getUserName() + " from " + jsonStore);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + jsonStore);
+        }
     }
 
     // EFFECTS: displays login menu of options for user
@@ -88,6 +151,8 @@ public class DriveCostProApp {
         System.out.println("\nSelect from:");
         System.out.println("\tv -> view all my vehicles");
         System.out.println("\ta -> add a vehicle");
+        System.out.println("\ts -> save my data to file");
+        System.out.println("\tl -> load my data from file");
         System.out.println("\td -> delete account");
         System.out.println("\tq -> quit");
     }
@@ -176,7 +241,11 @@ public class DriveCostProApp {
     public void registerUser() {
         System.out.println("Enter username to register:");
         String username = input.next();
-        if (users.registerUser(username)) {
+        System.out.println("Enter a password:");
+        String password = input.next();
+        if (users.registerUser(username, password)) {
+            User updateUser = users.findUser(username);
+            updateUser.setPassword(password);
             System.out.println("Registration successful. You can now log in with your username.");
         } else {
             System.out.println("Registration failed. Username already exists.");
@@ -190,16 +259,25 @@ public class DriveCostProApp {
         String username = input.next();
         User user = users.findUser(username);
         if (user != null) {
-            System.out.println("Login successful. Welcome, " + username + "!");
-            this.currentUser = user;
+            System.out.println("Enter your password:");
+            String password = input.next();
+            if (user.passwordCorrect(password)) {
+                System.out.println("Login successful. Welcome, " + username + "!");
+                this.currentUser = user;
+                jsonStore = "./data/" + currentUser.getUserName() + ".json";
+                jsonWriter = new JsonWriter(jsonStore);
+                jsonReader = new JsonReader(jsonStore);
+            } else {
+                System.out.println("Incorrect password");
+            }
         } else {
             System.out.println("Login failed. User not found.");
         }
-
     }
 
+
     // MODIFIES: this
-    // EFFECTS: prompts the user to add a new vehicle to current user vehicle list
+// EFFECTS: prompts the user to add a new vehicle to current user vehicle list
     public void addVehicle() {
         System.out.println("Adding a new vehicle");
         System.out.println("Enter vehicle name: ");
@@ -286,7 +364,7 @@ public class DriveCostProApp {
     }
 
     // MODIFIES: vehicle
-    // EFFECTS: updates the average monthly expenses of the vehicle
+// EFFECTS: updates the average monthly expenses of the vehicle
     public void changeMonthlyExpenses(Vehicle vehicle) {
         System.out.println("Please enter new average monthly expenses since purchase: ");
         double monthlyExpenses = input.nextDouble();
@@ -295,7 +373,7 @@ public class DriveCostProApp {
     }
 
     // MODIFIES: vehicle
-    // EFFECTS: updates the other expenses associated with the vehicle
+// EFFECTS: updates the other expenses associated with the vehicle
     public void changeOtherExpenses(Vehicle vehicle) {
         System.out.println("Please enter new other expenses since purchase: ");
         double otherExpenses = input.nextDouble();
@@ -304,7 +382,7 @@ public class DriveCostProApp {
     }
 
     // MODIFIES: vehicle
-    // EFFECTS: updates the number of months the vehicle has been owned
+// EFFECTS: updates the number of months the vehicle has been owned
     public void changeMonthsOwned(Vehicle vehicle) {
         System.out.println("Please enter months owned since purchase: ");
         int monthsOwned = input.nextInt();
@@ -313,7 +391,7 @@ public class DriveCostProApp {
     }
 
     // MODIFIES: vehicle
-    // EFFECTS: updates the current mileage of the vehicle in KM
+// EFFECTS: updates the current mileage of the vehicle in KM
     public void changeCurrentMileage(Vehicle vehicle) {
         System.out.println("Please enter current mileage in KM: ");
         int currentMileage = input.nextInt();
@@ -322,7 +400,7 @@ public class DriveCostProApp {
     }
 
     // MODIFIES: vehicle
-    // EFFECTS: updates the total charging cost for this EV
+// EFFECTS: updates the total charging cost for this EV
     public void changeChargingCost(ElectricCar vehicle) {
         System.out.println("Please enter your total charging cost: ");
         double chargingCost = input.nextDouble();
@@ -331,7 +409,7 @@ public class DriveCostProApp {
     }
 
     // MODIFIES: vehicle
-    // EFFECTS: updates the total gasoline cost for this gas car
+// EFFECTS: updates the total gasoline cost for this gas car
     public void changeGasolineCost(GasolineCar vehicle) {
         System.out.println("Please enter your total Gasoline cost: ");
         double gasolineCost = input.nextDouble();
@@ -347,7 +425,7 @@ public class DriveCostProApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: deletes the selected vehicle from the current user's vehicle list if confirmed
+// EFFECTS: deletes the selected vehicle from the current user's vehicle list if confirmed
     private void deleteVehicle(Vehicle vehicle) {
         System.out.println("Are you sure you want to delete " + vehicle.getName() + " ?");
         System.out.println("Press Y to confirm.");
@@ -371,7 +449,7 @@ public class DriveCostProApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: deletes the current user account if confirmed
+// EFFECTS: deletes the current user account if confirmed
     public void deleteUser() {
         System.out.println("Are you sure you want to delete your account,"
                 + currentUser.getUserName() + "? \nThis operation cannot be undone.");

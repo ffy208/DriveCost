@@ -1,8 +1,11 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents a general type of all vehicle that has a name, purchase cost, monthly expenses, other expenses
 // currentMileage, expectedMileage, costPerKilometer
-public abstract class Vehicle {
+public abstract class Vehicle implements Writable {
     protected String vehicleName; // The name of the vehicle.
     protected double purchaseCost; // The purchase cost of the vehicle.
     protected double monthlyExpenses; // Monthly expenses associated with the vehicle
@@ -10,7 +13,7 @@ public abstract class Vehicle {
     protected double otherExpenses; // Other related expenses (parking fees, vehicle inspections, etc.).
     protected int monthsOwned; // Months since purchase.
     protected int currentMileage; // The current mileage of the vehicle in kilometer.
-    protected int expectedMileage; // The expected mileage for future cost calculations.
+    //protected int expectedMileage; // The expected mileage for future cost calculations.
 
     //REQUIRES: name has a non-zero length, purchaseCost =>  0;
     //EFFECTS: this.vehicleName = name, this.purchaseCost = purchaseCost
@@ -22,7 +25,20 @@ public abstract class Vehicle {
         this.otherExpenses = 0;
         this.monthsOwned = 0;
         this.currentMileage = 0;
-        this.expectedMileage = 0;
+        //this.expectedMileage = 0;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("vehicleName", vehicleName);
+        json.put("purchaseCost", purchaseCost);
+        json.put("monthlyExpenses", monthlyExpenses);
+        json.put("otherExpenses", otherExpenses);
+        json.put("monthsOwned", monthsOwned);
+        json.put("currentMileage", currentMileage);
+        //json.put("expectedMileage", expectedMileage);
+        return json;
     }
 
     //EFFECTS: calculate the total cost for this vehicle
@@ -87,7 +103,7 @@ public abstract class Vehicle {
         return this.currentMileage;
     }
 
-    public int getExpectedMileage() {
-        return this.expectedMileage;
-    }
+   // public int getExpectedMileage() {
+   //     return this.expectedMileage;
+   // }
 }

@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONObject;
+
 // Represents a Gasoline Gas of same as general vehicle type, but it has own gasoline cost filed.
 public class GasolineCar extends Vehicle {
     private double gasolineCost;
@@ -9,6 +11,14 @@ public class GasolineCar extends Vehicle {
     public GasolineCar(String carName, double purchaseCost) {
         super(carName, purchaseCost);
         this.gasolineCost = 0;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = super.toJson();
+        json.put("gasolineCost", gasolineCost);
+        json.put("vehicleType", "GasolineCar");
+        return json;
     }
 
     @Override

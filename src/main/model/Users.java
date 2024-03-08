@@ -1,14 +1,37 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 // Represents app users list that helps to manage register and login
-public class Users {
-    private final ArrayList<User> users;
+public class Users implements Writable {
+    private ArrayList<User> users;
 
     //EFFECTS: create a new users list
     public Users() {
         this.users = new ArrayList<>();
+    }
+
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("usersList", usersToJson());
+        return json;
+    }
+
+    // EFFECTS: returns things in this workroom as a JSON array
+    private JSONArray usersToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (User user : users) {
+            jsonArray.put(user.getUserName());
+        }
+        return jsonArray;
     }
 
     //REQUIRES: name has a non-zero length
@@ -18,8 +41,6 @@ public class Users {
         for (User user : users) {
             if (user.getUserName().equals(name)) {
                 return user;
-            } else {
-                continue;
             }
         }
         return null;
@@ -28,16 +49,14 @@ public class Users {
     //REQUIRES: name has a non-zero length
     //EFFECTS: search the given name in users list, if exists return false,
     //         If not in the list, create and add this new user to the list
-    public boolean registerUser(String userName) {
+    public boolean registerUser(String userName, String password) {
         if (findUser(userName) == null) {
-            users.add(new User(userName));
+            users.add(new User(userName, password));
             return true;
         } else {
             return false;
-
         }
     }
-
 
     // !!! Put all simple setter and getter methods below
     public ArrayList<User> getUsers() {
