@@ -26,7 +26,6 @@ public class DriveCostProApp {
     //          then runs the application
     public DriveCostProApp() throws FileNotFoundException {
         users = new Users();
-
         input = new Scanner(System.in);
         input.useDelimiter("\n");
         autoJsonWriter = new JsonWriter(JSON_STORE_VERIFICATION);
@@ -46,8 +45,6 @@ public class DriveCostProApp {
         }
         System.out.println("\nGoodbye!");
     }
-
-
 
     // EFFECTS: call display login menu and processes user input for it
     private boolean loginMenuAndInput() {
@@ -244,7 +241,7 @@ public class DriveCostProApp {
 
 
     // MODIFIES: this
-// EFFECTS: prompts the user to add a new vehicle to current user vehicle list
+    // EFFECTS: prompts the user to add a new vehicle to current user vehicle list
     public void addVehicle() {
         System.out.println("Adding a new vehicle");
         System.out.println("Enter vehicle name: ");
@@ -269,9 +266,7 @@ public class DriveCostProApp {
         }
         currentUser.addVehicle(vehicle);
         System.out.println(name + " added successfully");
-
     }
-
 
     // EFFECTS: displays a menu for updating vehicle information and processes the user's selection
     private void updateVehicleInformation(Vehicle vehicle) {
@@ -331,7 +326,7 @@ public class DriveCostProApp {
     }
 
     // MODIFIES: vehicle
-// EFFECTS: updates the average monthly expenses of the vehicle
+    // EFFECTS: updates the average monthly expenses of the vehicle
     public void changeMonthlyExpenses(Vehicle vehicle) {
         System.out.println("Please enter new average monthly expenses since purchase: ");
         double monthlyExpenses = input.nextDouble();
@@ -340,7 +335,7 @@ public class DriveCostProApp {
     }
 
     // MODIFIES: vehicle
-// EFFECTS: updates the other expenses associated with the vehicle
+    // EFFECTS: updates the other expenses associated with the vehicle
     public void changeOtherExpenses(Vehicle vehicle) {
         System.out.println("Please enter new other expenses since purchase: ");
         double otherExpenses = input.nextDouble();
@@ -349,7 +344,7 @@ public class DriveCostProApp {
     }
 
     // MODIFIES: vehicle
-// EFFECTS: updates the number of months the vehicle has been owned
+    // EFFECTS: updates the number of months the vehicle has been owned
     public void changeMonthsOwned(Vehicle vehicle) {
         System.out.println("Please enter months owned since purchase: ");
         int monthsOwned = input.nextInt();
@@ -358,7 +353,7 @@ public class DriveCostProApp {
     }
 
     // MODIFIES: vehicle
-// EFFECTS: updates the current mileage of the vehicle in KM
+    // EFFECTS: updates the current mileage of the vehicle in KM
     public void changeCurrentMileage(Vehicle vehicle) {
         System.out.println("Please enter current mileage in KM: ");
         int currentMileage = input.nextInt();
@@ -367,7 +362,7 @@ public class DriveCostProApp {
     }
 
     // MODIFIES: vehicle
-// EFFECTS: updates the total charging cost for this EV
+    // EFFECTS: updates the total charging cost for this EV
     public void changeChargingCost(ElectricCar vehicle) {
         System.out.println("Please enter your total charging cost: ");
         double chargingCost = input.nextDouble();
@@ -376,7 +371,7 @@ public class DriveCostProApp {
     }
 
     // MODIFIES: vehicle
-// EFFECTS: updates the total gasoline cost for this gas car
+    // EFFECTS: updates the total gasoline cost for this gas car
     public void changeGasolineCost(GasolineCar vehicle) {
         System.out.println("Please enter your total Gasoline cost: ");
         double gasolineCost = input.nextDouble();
@@ -392,7 +387,7 @@ public class DriveCostProApp {
     }
 
     // MODIFIES: this
-// EFFECTS: deletes the selected vehicle from the current user's vehicle list if confirmed
+    // EFFECTS: deletes the selected vehicle from the current user's vehicle list if confirmed
     private void deleteVehicle(Vehicle vehicle) {
         System.out.println("Are you sure you want to delete " + vehicle.getName() + " ?");
         System.out.println("Press Y to confirm.");
@@ -416,7 +411,7 @@ public class DriveCostProApp {
     }
 
     // MODIFIES: this
-// EFFECTS: deletes the current user account if confirmed
+    // EFFECTS: deletes the current user account if confirmed
     public void deleteUser() {
         System.out.println("Are you sure you want to delete your account,"
                 + currentUser.getUserName() + "? \nThis operation cannot be undone.");

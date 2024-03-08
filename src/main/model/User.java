@@ -22,6 +22,7 @@ public class User implements Writable {
         userVehicles = new ArrayList<>();
     }
 
+    // EFFECTS: returns this user with all filed in JSON
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -31,7 +32,7 @@ public class User implements Writable {
         return json;
     }
 
-    // EFFECTS: returns things in this workroom as a JSON array
+    // EFFECTS: returns vehicles belong to this user as a JSON array
     private JSONArray vehiclesToJson() {
         JSONArray jsonArray = new JSONArray();
         for (Vehicle v : userVehicles) {
@@ -40,6 +41,7 @@ public class User implements Writable {
         return jsonArray;
     }
 
+    // EFFECTS: returns ture if the passwords is correct, false otherwise
     // public boolean passwordCorrect(String password) {
     //      return this.password.equals(password);
     // }

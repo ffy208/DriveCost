@@ -12,13 +12,17 @@ import model.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+// Represents a reader that reads User from JSON data stored in file
 public class JsonReader {
     private String source;
 
+    // EFFECTS: constructs reader to read from source file
     public JsonReader(String source) {
         this.source = source;
     }
 
+    // EFFECTS: reads user from file and returns it;
+    // throws IOException if an error occurs reading data from file
     public User read() throws IOException {
         String jsonData = this.readFile(this.source);
         JSONObject jsonObject = new JSONObject(jsonData);
@@ -36,6 +40,7 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
+    // EFFECTS: parses User from JSON object and returns it
     private User parseUser(JSONObject jsonObject) {
         String userName = jsonObject.getString("userName");
         // String password = jsonObject.getString("password");
@@ -44,6 +49,8 @@ public class JsonReader {
         return user;
     }
 
+    // MODIFIES: user
+    // EFFECTS: parses vehicles from JSON object and adds them to user
     private void addVehicles(User user, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("userVehicles");
         Iterator<Object> var4 = jsonArray.iterator();
@@ -56,9 +63,9 @@ public class JsonReader {
 
     }
 
+    // EFFECTS: determine vehicle type from JSON object and call corresponding methods to add
     private void addVehicle(User user, JSONObject jsonObject) {
         String vehicleType = jsonObject.getString("vehicleType");
-
         switch (vehicleType) {
             case "GasolineCar":
                 addGasolineCar(user, jsonObject);
@@ -69,6 +76,8 @@ public class JsonReader {
         }
     }
 
+    // MODIFIES: user
+    // EFFECTS: parses GasolineCar from JSON object and adds it to user's Vehicles
     private void addGasolineCar(User user, JSONObject jsonObject) {
         String vehicleName = jsonObject.getString("vehicleName");
         double purchaseCost = jsonObject.getDouble("purchaseCost");
@@ -87,6 +96,8 @@ public class JsonReader {
         user.addVehicle(vehicle);
     }
 
+    // MODIFIES: user
+    // EFFECTS: parses ElectricCar from JSON object and adds it to user's Vehicles
     private void addElectricCar(User user, JSONObject jsonObject) {
         String vehicleName = jsonObject.getString("vehicleName");
         double purchaseCost = jsonObject.getDouble("purchaseCost");

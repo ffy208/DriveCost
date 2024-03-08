@@ -14,6 +14,7 @@ public class GasolineCar extends Vehicle {
         this.gasolineCost = 0;
     }
 
+    // EFFECTS: returns this Car in JSON
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -29,14 +30,14 @@ public class GasolineCar extends Vehicle {
         return json;
     }
 
-    @Override
     //EFFECTS: calculate the total cost for this GasolineCar
+    @Override
     public double totalCostUntilToday() {
         return super.totalCostUntilToday() + this.gasolineCost;
     }
 
-    @Override
     // EFFECTS: calculate the cost per kilometer
+    @Override
     public double costPerKilometer() {
         double costPerKilometer;
         if (this.currentMileage == 0) {
@@ -47,8 +48,8 @@ public class GasolineCar extends Vehicle {
         return costPerKilometer;
     }
 
-    @Override
     //EFFECTS: provide total cost, current mileage and cost per kilometer
+    @Override
     public String getVehicleInfo() {
         String vehicleInfo;
         vehicleInfo = vehicleName + ":\nTotal Cost Until Today:  "

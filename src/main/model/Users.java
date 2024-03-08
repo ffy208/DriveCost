@@ -20,7 +20,7 @@ public class Users {
 
 //    Second layer data persistence
 //    Do it later
-//
+//    // EFFECTS: returns all Users in JSON
 //    @Override
 //    public JSONObject toJson() {
 //        JSONObject json = new JSONObject();
@@ -28,7 +28,7 @@ public class Users {
 //        return json;
 //    }
 //
-//    // EFFECTS: returns things in this workroom as a JSON array
+//    // EFFECTS: returns all users in this Users as a JSON array
 //    private JSONArray usersToJson() {
 //        JSONArray jsonArray = new JSONArray();
 //        for (User user : users) {
@@ -61,15 +61,6 @@ public class Users {
         }
     }
 
-    // !!! Put all simple setter and getter methods below
-    public ArrayList<User> getUsers() {
-        return this.users;
-    }
-
-    public void addUser(User user) {
-        this.users.add(user);
-    }
-
     // MODIFIES: this
     // EFFECTS: remove the given user from users list
     //         return true for success, false otherwise
@@ -80,4 +71,15 @@ public class Users {
         }
         return false;
     }
+
+    // !!! Put all simple setter and getter methods below
+    public ArrayList<User> getUsers() {
+        return this.users;
+    }
+
+    public void addUser(User user) {
+        this.users.add(user);
+    }
+
+
 }
