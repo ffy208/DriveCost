@@ -25,10 +25,10 @@ public class JsonWriter {
         this.saveToFile(json.toString(4));
     }
 
-    public void write(Users users) {
+/*    public void write(Users users) {
         JSONObject json = users.toJson();
         this.saveToFile(json.toString(4));
-    }
+    }*/
 
     public void close() {
         this.writer.close();

@@ -25,17 +25,9 @@ public class JsonReader {
         return this.parseUser(jsonObject);
     }
 
-    public ArrayList<String> readUsersList() throws IOException {
-        String jsonData = this.readFile(this.source);
-        JSONObject jsonObject = new JSONObject(jsonData);
-        return this.parseUsersList(jsonObject);
-    }
-
-
     private String readFile(String source) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
         Stream<String> stream = Files.lines(Paths.get(source), StandardCharsets.UTF_8);
-
         try {
             stream.forEach((s) -> {
                 contentBuilder.append(s);
@@ -48,7 +40,6 @@ public class JsonReader {
                     var7.addSuppressed(var6);
                 }
             }
-
             throw var7;
         }
 
@@ -58,17 +49,6 @@ public class JsonReader {
 
         return contentBuilder.toString();
     }
-
-    public ArrayList<String> parseUsersList(JSONObject jsonObject) {
-        ArrayList<String> usersList = new ArrayList<>();
-        JSONArray jsonArray = jsonObject.getJSONArray("usersList");
-        for (Object json : jsonArray) {
-            String nextUsername = ((JSONObject) json).getString("usersList");
-            usersList.add(nextUsername);
-        }
-        return usersList;
-    }
-
 
     private User parseUser(JSONObject jsonObject) {
         String userName = jsonObject.getString("userName");

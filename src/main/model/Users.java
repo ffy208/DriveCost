@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 // Represents app users list that helps to manage register and login
-public class Users implements Writable {
+public class Users {
     private ArrayList<User> users;
 
     //EFFECTS: create a new users list
@@ -18,21 +18,24 @@ public class Users implements Writable {
     }
 
 
-    @Override
-    public JSONObject toJson() {
-        JSONObject json = new JSONObject();
-        json.put("usersList", usersToJson());
-        return json;
-    }
-
-    // EFFECTS: returns things in this workroom as a JSON array
-    private JSONArray usersToJson() {
-        JSONArray jsonArray = new JSONArray();
-        for (User user : users) {
-            jsonArray.put(user.getUserName());
-        }
-        return jsonArray;
-    }
+//    Second layer data persistence
+//    Do it later
+//
+//    @Override
+//    public JSONObject toJson() {
+//        JSONObject json = new JSONObject();
+//        json.put("usersList", usersToJson());
+//        return json;
+//    }
+//
+//    // EFFECTS: returns things in this workroom as a JSON array
+//    private JSONArray usersToJson() {
+//        JSONArray jsonArray = new JSONArray();
+//        for (User user : users) {
+//            jsonArray.put(user.getUserName());
+//        }
+//        return jsonArray;
+//    }
 
     //REQUIRES: name has a non-zero length
     //EFFECTS: search the given name in users list, if exists return this user.

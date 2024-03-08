@@ -47,4 +47,5 @@ class JsonReaderTest {
             fail("Couldn't read from file");
         }
     }
+
 }
