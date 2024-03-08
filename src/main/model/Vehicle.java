@@ -28,19 +28,6 @@ public abstract class Vehicle implements Writable {
         //this.expectedMileage = 0;
     }
 
-    @Override
-    public JSONObject toJson() {
-        JSONObject json = new JSONObject();
-        json.put("vehicleName", vehicleName);
-        json.put("purchaseCost", purchaseCost);
-        json.put("monthlyExpenses", monthlyExpenses);
-        json.put("otherExpenses", otherExpenses);
-        json.put("monthsOwned", monthsOwned);
-        json.put("currentMileage", currentMileage);
-        //json.put("expectedMileage", expectedMileage);
-        return json;
-    }
-
     //EFFECTS: calculate the total cost for this vehicle
     public double totalCostUntilToday() {
         double totalMonthlyExpenses = monthsOwned * monthlyExpenses;

@@ -15,7 +15,14 @@ public class ElectricCar extends Vehicle {
 
     @Override
     public JSONObject toJson() {
-        JSONObject json = super.toJson();
+        JSONObject json = new JSONObject();
+        json.put("vehicleName", vehicleName);
+        json.put("purchaseCost", purchaseCost);
+        json.put("monthlyExpenses", monthlyExpenses);
+        json.put("otherExpenses", otherExpenses);
+        json.put("monthsOwned", monthsOwned);
+        json.put("currentMileage", currentMileage);
+        //json.put("expectedMileage", expectedMileage);
         json.put("chargingCost", chargingCost);
         json.put("vehicleType", "ElectricCar");
         return json;

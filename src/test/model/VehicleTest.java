@@ -22,6 +22,11 @@ public class VehicleTest {
     }
 
     @Test
+    void testToJson() {
+
+    }
+
+    @Test
     void testConstructor() {
         assertEquals("car1", testCar1.getName());
         assertEquals(100, testCar1.getPurchaseCost());

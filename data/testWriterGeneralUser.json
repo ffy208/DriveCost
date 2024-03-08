@@ -1,0 +1,25 @@
+{
+    "userVehicles": [
+        {
+            "currentMileage": 0,
+            "vehicleName": "TestCar1",
+            "purchaseCost": 2000,
+            "otherExpenses": 0,
+            "monthlyExpenses": 0,
+            "gasolineCost": 0,
+            "monthsOwned": 0,
+            "vehicleType": "GasolineCar"
+        },
+        {
+            "currentMileage": 0,
+            "vehicleName": "TestCar2",
+            "purchaseCost": 3000,
+            "otherExpenses": 0,
+            "monthlyExpenses": 0,
+            "monthsOwned": 0,
+            "chargingCost": 0,
+            "vehicleType": "ElectricCar"
+        }
+    ],
+    "userName": "TestUser2"
+}

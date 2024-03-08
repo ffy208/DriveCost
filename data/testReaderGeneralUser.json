@@ -1,0 +1,25 @@
+{
+    "userVehicles": [
+        {
+            "currentMileage": 20000,
+            "vehicleName": "NormalCar",
+            "purchaseCost": 25000,
+            "otherExpenses": 3000,
+            "monthlyExpenses": 400,
+            "monthsOwned": 12,
+            "chargingCost": 1602.2,
+            "vehicleType": "ElectricCar"
+        },
+        {
+            "currentMileage": 10000,
+            "vehicleName": "luxuryCar",
+            "purchaseCost": 120000,
+            "otherExpenses": 23000,
+            "monthlyExpenses": 800,
+            "gasolineCost": 2000,
+            "monthsOwned": 8,
+            "vehicleType": "GasolineCar"
+        }
+    ],
+    "userName": "GeneralUser"
+}
