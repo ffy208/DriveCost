@@ -42,3 +42,5 @@ ___
 - As a user, I want to be able to delete a vehicle to my vehicles list
 - As a user, I want to be able to update information to a vehicle
 - As a user, I want to be able to see the current cost per kilometer for a vehicle
+- As a user, I want to be able to save my vehicles list to file (if I so choose)
+- As a user, I want to be able to load my vehicles list from file (if I so choose)
