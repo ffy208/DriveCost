@@ -77,7 +77,9 @@ class JsonReaderTest {
             List<Vehicle> userVehicles = user.getAllVehicles();
             assertEquals(2, userVehicles.size());
             assertEquals(20000, userVehicles.get(0).getCurrentMileage());
+            assertEquals("ElectricCar", userVehicles.get(0).getVehicleType());
             assertEquals(23000, userVehicles.get(1).getOtherExpenses());
+            assertEquals("GasolineCar", userVehicles.get(1).getVehicleType());
         } catch (IOException e) {
             fail("Couldn't read from file");
         }

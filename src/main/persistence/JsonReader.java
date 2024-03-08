@@ -61,7 +61,6 @@ public class JsonReader {
 
         switch (vehicleType) {
             case "GasolineCar":
-
                 addGasolineCar(user, jsonObject);
                 break;
             case "ElectricCar":

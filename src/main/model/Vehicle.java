@@ -90,6 +90,8 @@ public abstract class Vehicle implements Writable {
         return this.currentMileage;
     }
 
+    public abstract String getVehicleType();
+
    // public int getExpectedMileage() {
    //     return this.expectedMileage;
    // }
