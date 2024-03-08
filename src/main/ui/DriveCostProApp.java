@@ -37,7 +37,6 @@ public class DriveCostProApp {
     // EFFECTS: runs the main loop of this application
     public void runApp() {
         boolean keepGoing = true;
-        loadVerification();
         while (keepGoing) {
             if (currentUser == null) {
                 keepGoing = loginMenuAndInput();
@@ -45,32 +44,10 @@ public class DriveCostProApp {
                 keepGoing = userMenuAndInput();
             }
         }
-        updateVerification();
         System.out.println("\nGoodbye!");
     }
 
-    // MODIFIES: this
-    // EFFECTS: loads all users account from file
-    private void loadVerification() {
-        try {
-            usersList = autojsonReader.readUsersList();
-            System.out.println("Loaded System Data from " + JSON_STORE_VERIFICATION);
-        } catch (IOException e) {
-            System.out.println("Unable to read from file: " + JSON_STORE_VERIFICATION);
-        }
-    }
 
-    // EFFECTS: update the all users information to file
-    private void updateVerification() {
-        try {
-            autoJsonWriter.open();
-            autoJsonWriter.write(users);
-            autoJsonWriter.close();
-            System.out.println("Saved to " + JSON_STORE_VERIFICATION);
-        } catch (FileNotFoundException e) {
-            System.out.println("Unable to write to file: " + JSON_STORE_VERIFICATION);
-        }
-    }
 
     // EFFECTS: call display login menu and processes user input for it
     private boolean loginMenuAndInput() {
@@ -241,11 +218,7 @@ public class DriveCostProApp {
     public void registerUser() {
         System.out.println("Enter username to register:");
         String username = input.next();
-        System.out.println("Enter a password:");
-        String password = input.next();
-        if (users.registerUser(username, password)) {
-            User updateUser = users.findUser(username);
-            updateUser.setPassword(password);
+        if (users.registerUser(username)) {
             System.out.println("Registration successful. You can now log in with your username.");
         } else {
             System.out.println("Registration failed. Username already exists.");
@@ -259,17 +232,11 @@ public class DriveCostProApp {
         String username = input.next();
         User user = users.findUser(username);
         if (user != null) {
-            System.out.println("Enter your password:");
-            String password = input.next();
-            if (user.passwordCorrect(password)) {
-                System.out.println("Login successful. Welcome, " + username + "!");
-                this.currentUser = user;
-                jsonStore = "./data/" + currentUser.getUserName() + ".json";
-                jsonWriter = new JsonWriter(jsonStore);
-                jsonReader = new JsonReader(jsonStore);
-            } else {
-                System.out.println("Incorrect password");
-            }
+            System.out.println("Login successful. Welcome, " + username + "!");
+            this.currentUser = user;
+            jsonStore = "./data/" + currentUser.getUserName() + ".json";
+            jsonWriter = new JsonWriter(jsonStore);
+            jsonReader = new JsonReader(jsonStore);
         } else {
             System.out.println("Login failed. User not found.");
         }

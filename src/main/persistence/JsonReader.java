@@ -72,8 +72,8 @@ public class JsonReader {
 
     private User parseUser(JSONObject jsonObject) {
         String userName = jsonObject.getString("userName");
-        String password = jsonObject.getString("password");
-        User user = new User(userName, password);
+        // String password = jsonObject.getString("password");
+        User user = new User(userName);
         this.addVehicles(user, jsonObject);
         return user;
     }

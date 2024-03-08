@@ -49,9 +49,9 @@ public class Users implements Writable {
     //REQUIRES: name has a non-zero length
     //EFFECTS: search the given name in users list, if exists return false,
     //         If not in the list, create and add this new user to the list
-    public boolean registerUser(String userName, String password) {
+    public boolean registerUser(String userName) {
         if (findUser(userName) == null) {
-            users.add(new User(userName, password));
+            users.add(new User(userName));
             return true;
         } else {
             return false;

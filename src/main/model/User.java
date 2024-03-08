@@ -11,14 +11,14 @@ import java.util.List;
 // Represents a DriveCostPro user having a name and their List Cars.
 public class User implements Writable {
     private final String userName;               // User's name
-    private String password;                     // User's password
+    // private String password;                     // User's password
     private final List<Vehicle> userVehicles;    // User's vehicles in a list
 
     //REQUIRES: name has a non-zero length
     //EFFECTS: username = name, and create a new userVehicles list
-    public User(String name, String password) {
+    public User(String name) {
         this.userName = name;
-        this.password = password;
+        // this.password = password;
         userVehicles = new ArrayList<>();
     }
 
@@ -26,7 +26,7 @@ public class User implements Writable {
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("userName", userName);
-        json.put("password", password);
+        //json.put("password", password);
         json.put("userVehicles", vehiclesToJson());
         return json;
     }
@@ -40,9 +40,9 @@ public class User implements Writable {
         return jsonArray;
     }
 
-    public boolean passwordCorrect(String password) {
-        return this.password.equals(password);
-    }
+    // public boolean passwordCorrect(String password) {
+    //      return this.password.equals(password);
+    // }
 
 
     //MODIFIES: this
@@ -85,13 +85,13 @@ public class User implements Writable {
         return this.userVehicles;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getPassword() {
-        return password;
-    }
+//    public void setPassword(String password) {
+//        this.password = password;
+//    }
+//
+//    public String getPassword() {
+//        return password;
+//    }
 
 
 }
