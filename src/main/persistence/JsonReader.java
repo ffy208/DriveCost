@@ -25,26 +25,12 @@ public class JsonReader {
         return this.parseUser(jsonObject);
     }
 
+    // EFFECTS: reads source file as string and returns it
     private String readFile(String source) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
-        Stream<String> stream = Files.lines(Paths.get(source), StandardCharsets.UTF_8);
-        try {
-            stream.forEach((s) -> {
-                contentBuilder.append(s);
-            });
-        } catch (Throwable var7) {
-            if (stream != null) {
-                try {
-                    stream.close();
-                } catch (Throwable var6) {
-                    var7.addSuppressed(var6);
-                }
-            }
-            throw var7;
-        }
 
-        if (stream != null) {
-            stream.close();
+        try (Stream<String> stream = Files.lines(Paths.get(source), StandardCharsets.UTF_8)) {
+            stream.forEach(s -> contentBuilder.append(s));
         }
 
         return contentBuilder.toString();
