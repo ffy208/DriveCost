@@ -44,3 +44,8 @@ ___
 - As a user, I want to be able to see the current cost per kilometer for a vehicle
 - As a user, I want to be able to save my vehicles list to file (if I so choose)
 - As a user, I want to be able to load my vehicles list from file (if I so choose)
+
+
+---
+### Reference
+UBC CPSC210, JsonSerializationDemo, (2021), GitHub repository, https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git

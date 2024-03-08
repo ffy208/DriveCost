@@ -85,4 +85,24 @@ class JsonReaderTest {
         }
     }
 
+    @Test
+    void testReaderGeneralUser2() {
+        JsonReader reader = new JsonReader("./data/testReaderGeneralUser2.json");
+        try {
+            User user = reader.read();
+            assertEquals("GeneralUser2", user.getUserName());
+            List<Vehicle> userVehicles = user.getAllVehicles();
+            assertEquals(4, userVehicles.size());
+            assertEquals(20000, userVehicles.get(0).getCurrentMileage());
+            assertEquals("ElectricCar", userVehicles.get(0).getVehicleType());
+            assertEquals(23000, userVehicles.get(1).getOtherExpenses());
+            assertEquals("GasolineCar", userVehicles.get(1).getVehicleType());
+            assertEquals("ElectricCar", userVehicles.get(2).getVehicleType());
+            assertEquals("ElectricCar", userVehicles.get(3).getVehicleType());
+
+        } catch (IOException e) {
+            fail("Couldn't read from file");
+        }
+    }
+
 }

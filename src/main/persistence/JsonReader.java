@@ -66,13 +66,10 @@ public class JsonReader {
     // EFFECTS: determine vehicle type from JSON object and call corresponding methods to add
     private void addVehicle(User user, JSONObject jsonObject) {
         String vehicleType = jsonObject.getString("vehicleType");
-        switch (vehicleType) {
-            case "GasolineCar":
-                addGasolineCar(user, jsonObject);
-                break;
-            case "ElectricCar":
-                addElectricCar(user, jsonObject);
-                break;
+        if (vehicleType.equals("GasolineCar")) {
+            addGasolineCar(user, jsonObject);
+        } else {
+            addElectricCar(user, jsonObject);
         }
     }
 
