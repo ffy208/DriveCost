@@ -131,12 +131,11 @@ public class UserTest {
     @Test
     void testUserEqualsMethod() {
         assertEquals(testUser1, testUser2);
-        assertNotEquals(testUser1,testUser3);
-        assertNotEquals(testUser1,null);
+        assertNotEquals(testUser1, testUser3);
+        assertNotEquals(testUser1, null);
         assertNotEquals(testUser1, new Object());
         assertEquals(testUser1, testUser1);
     }
-
 
 
 }
