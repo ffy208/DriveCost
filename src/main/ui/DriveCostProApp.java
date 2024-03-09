@@ -6,6 +6,7 @@ import persistence.JsonDatabaseWriter;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -452,6 +453,7 @@ public class DriveCostProApp {
         switch (confirmation.toLowerCase()) {
             case "y":
                 if (userDatabase.removeUser(currentUser)) {
+                    deleteUserFile();
                     currentUser = null;
                     saveUserDatabase();
                     System.out.println("Your account has been successfully deleted.");
@@ -466,5 +468,16 @@ public class DriveCostProApp {
                 System.out.println("Invalid input");
                 break;
         }
+    }
+
+    // EFFECTS: Delete User file as request
+    private void deleteUserFile() {
+        File file = new File(jsonStore);
+        if (file.delete()) {
+            System.out.println("Deleted user data file: " + jsonStore);
+        } else {
+            System.out.println("Failed to delete user data file: " + jsonStore);
+        }
+
     }
 }
