@@ -8,6 +8,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class UserTest {
     private User testUser;
+    private User testUser1;
+    private User testUser2;
+    private User testUser3;
     private Vehicle testCar1;
     private Vehicle testCar2;
     private Vehicle testCar3;
@@ -15,6 +18,9 @@ public class UserTest {
     @BeforeEach
     void runBefore() {
         testUser = new User("Elise");
+        testUser1 = new User("User1");
+        testUser2 = new User("User1");
+        testUser3 = new User("User3");
         testCar1 = new GasolineCar("car1", 100);
         testCar2 = new GasolineCar("car2", 200);
         testCar3 = new GasolineCar("car3", 300);
@@ -121,4 +127,16 @@ public class UserTest {
                 "Current Mileage in KM: 82\n" +
                 "Cost Per Kilometer: 3.658536585365854\n", testUser.viewUserVehicles());
     }
+
+    @Test
+    void testUserEqualsMethod() {
+        assertEquals(testUser1, testUser2);
+        assertNotEquals(testUser1,testUser3);
+        assertNotEquals(testUser1,null);
+        assertNotEquals(testUser1, new Object());
+        assertEquals(testUser1, testUser1);
+    }
+
+
+
 }
