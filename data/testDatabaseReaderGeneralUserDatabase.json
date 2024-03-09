@@ -1,0 +1,52 @@
+{
+  "userDatabase": [
+    {
+      "userVehicles": [
+        {
+          "currentMileage": 100,
+          "vehicleName": "Car1",
+          "purchaseCost": 1000,
+          "otherExpenses": 100,
+          "monthlyExpenses": 200,
+          "monthsOwned": 12,
+          "chargingCost": 103,
+          "vehicleType": "ElectricCar"
+        },
+        {
+          "currentMileage": 100,
+          "vehicleName": "Car2",
+          "purchaseCost": 2000,
+          "otherExpenses": 300,
+          "monthlyExpenses": 2312,
+          "gasolineCost": 1331,
+          "monthsOwned": 13,
+          "vehicleType": "GasolineCar"
+        }
+      ],
+      "userName": "user1"
+    },
+    {
+      "userVehicles": [
+    {
+      "currentMileage": 100,
+      "vehicleName": "Car3",
+      "purchaseCost": 1000,
+      "otherExpenses": 100,
+      "monthlyExpenses": 200,
+      "monthsOwned": 12,
+      "chargingCost": 103,
+      "vehicleType": "ElectricCar"
+    },
+    {
+      "currentMileage": 100,
+      "vehicleName": "Car4",
+      "purchaseCost": 2000,
+      "otherExpenses": 300,
+      "monthlyExpenses": 2312,
+      "gasolineCost": 1331,
+      "monthsOwned": 13,
+      "vehicleType": "GasolineCar"
+    }
+  ],
+  "userName": "user2"
+}]}

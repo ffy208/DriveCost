@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 import model.User;
-import model.Users;
+import model.UserDatabase;
 import org.json.JSONObject;
 
 // Represents a writer that writes JSON representation of user to file
@@ -33,14 +33,6 @@ public class JsonWriter {
         this.saveToFile(json.toString(4));
     }
 
-/*
-    // MODIFIES: this
-    // EFFECTS: writes JSON representation of users to file
-    public void write(Users users) {
-        JSONObject json = users.toJson();
-        this.saveToFile(json.toString(4));
-    }*/
-
     // MODIFIES: this
     // EFFECTS: closes writer
     public void close() {
@@ -49,7 +41,7 @@ public class JsonWriter {
 
     // MODIFIES: this
     // EFFECTS: writes string to file
-    private void saveToFile(String json) {
+    protected void saveToFile(String json) {
         this.writer.print(json);
     }
 }

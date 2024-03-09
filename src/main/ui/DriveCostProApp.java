@@ -1,6 +1,8 @@
 package ui;
 
 import model.*;
+import persistence.JsonDatabaseReader;
+import persistence.JsonDatabaseWriter;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -11,37 +13,42 @@ import java.util.Scanner;
 
 // Drive Cost Pro application
 public class DriveCostProApp {
-    private static final String JSON_STORE_VERIFICATION = "./data/Verification.json";
+    private static final String JSON_STORE_DATABASE = "./data/UserDatabase.json";
     private String jsonStore;
-    private Users users;
+    private UserDatabase userDatabase;
     private User currentUser;
     private ArrayList<String> usersList;
     private final Scanner input;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
-    private JsonWriter autoJsonWriter;
-    private JsonReader autojsonReader;
+    private JsonDatabaseWriter jsonDatabaseWriter;
+    private JsonDatabaseReader jsonDatabaseReader;
+    boolean saved = false;
 
     // EFFECTS: constructs a DriveCostPro application, initializes the user list and scanner for input,
     //          then runs the application
     public DriveCostProApp() throws FileNotFoundException {
-        users = new Users();
+        userDatabase = new UserDatabase();
         input = new Scanner(System.in);
         input.useDelimiter("\n");
-        autoJsonWriter = new JsonWriter(JSON_STORE_VERIFICATION);
-        autojsonReader = new JsonReader(JSON_STORE_VERIFICATION);
+        jsonDatabaseWriter = new JsonDatabaseWriter(JSON_STORE_DATABASE);
+        jsonDatabaseReader = new JsonDatabaseReader(JSON_STORE_DATABASE);
         runApp();
     }
 
     // EFFECTS: runs the main loop of this application
     public void runApp() {
         boolean keepGoing = true;
+        loadUserDatabase();
         while (keepGoing) {
             if (currentUser == null) {
                 keepGoing = loginMenuAndInput();
             } else {
                 keepGoing = userMenuAndInput();
             }
+        }
+        if (saved) {
+            saveUserDatabase();
         }
         System.out.println("\nGoodbye!");
     }
@@ -95,20 +102,44 @@ public class DriveCostProApp {
             jsonWriter.write(currentUser);
             jsonWriter.close();
             System.out.println("Saved " + currentUser.getUserName() + " to " + jsonStore);
+            this.saved = true;
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + jsonStore);
         }
 
     }
 
+    // EFFECTS: saves the UserDatabase to file
+    private void saveUserDatabase() {
+        try {
+            jsonDatabaseWriter.open();
+            jsonDatabaseWriter.write(userDatabase);
+            jsonDatabaseWriter.close();
+            System.out.println("Updated UserDatabase to " + JSON_STORE_DATABASE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE_DATABASE);
+        }
+    }
+
     // MODIFIES: this
-    // EFFECTS: loads workroom from file
+    // EFFECTS: loads User from file
     private void loadUser() {
         try {
             currentUser = jsonReader.read();
             System.out.println("Loaded " + currentUser.getUserName() + " from " + jsonStore);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + jsonStore);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads UserDatabase from file
+    private void loadUserDatabase() {
+        try {
+            userDatabase = jsonDatabaseReader.readDatabase();
+            System.out.println("Loaded UserDatabase from " + JSON_STORE_DATABASE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE_DATABASE);
         }
     }
 
@@ -215,7 +246,7 @@ public class DriveCostProApp {
     public void registerUser() {
         System.out.println("Enter username to register:");
         String username = input.next();
-        if (users.registerUser(username)) {
+        if (userDatabase.registerUser(username)) {
             System.out.println("Registration successful. You can now log in with your username.");
         } else {
             System.out.println("Registration failed. Username already exists.");
@@ -227,7 +258,7 @@ public class DriveCostProApp {
     public void loginUser() {
         System.out.println("Enter your username:");
         String username = input.next();
-        User user = users.findUser(username);
+        User user = userDatabase.findUser(username);
         if (user != null) {
             System.out.println("Login successful. Welcome, " + username + "!");
             this.currentUser = user;
@@ -420,7 +451,9 @@ public class DriveCostProApp {
         String confirmation = input.next();
         switch (confirmation.toLowerCase()) {
             case "y":
-                if (users.removeUser(currentUser)) {
+                if (userDatabase.removeUser(currentUser)) {
+                    currentUser = null;
+                    saveUserDatabase();
                     System.out.println("Your account has been successfully deleted.");
                 } else {
                     System.out.println("Failed to delete your account.");

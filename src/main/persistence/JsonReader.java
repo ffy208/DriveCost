@@ -14,7 +14,7 @@ import org.json.JSONObject;
 
 // Represents a reader that reads User from JSON data stored in file
 public class JsonReader {
-    private String source;
+    protected String source;
 
     // EFFECTS: constructs reader to read from source file
     public JsonReader(String source) {
@@ -30,7 +30,7 @@ public class JsonReader {
     }
 
     // EFFECTS: reads source file as string and returns it
-    private String readFile(String source) throws IOException {
+    protected String readFile(String source) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
 
         try (Stream<String> stream = Files.lines(Paths.get(source), StandardCharsets.UTF_8)) {
@@ -41,7 +41,7 @@ public class JsonReader {
     }
 
     // EFFECTS: parses User from JSON object and returns it
-    private User parseUser(JSONObject jsonObject) {
+    protected User parseUser(JSONObject jsonObject) {
         String userName = jsonObject.getString("userName");
         // String password = jsonObject.getString("password");
         User user = new User(userName);

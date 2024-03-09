@@ -6,6 +6,7 @@ import persistence.Writable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 // Represents a DriveCostPro user having a name and their List Cars.
@@ -39,6 +40,19 @@ public class User implements Writable {
             jsonArray.put(v.toJson());
         }
         return jsonArray;
+    }
+
+    // EFFECTS: return ture if 2 users has same name, false otherwise
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        User user = (User) obj;
+        return Objects.equals(userName, user.userName);
     }
 
     // EFFECTS: returns ture if the passwords is correct, false otherwise
