@@ -37,13 +37,15 @@ I want to contribute my time and knowledge gained from my coursework to turn thi
 idea into a usable program that can benefit a wider audience.
 ___
 ## User Stories
-- As a user, I want to be able to add a vehicle to my vehicles list
-- As a user, I want to be able to view the list of vehicles on my vehicles list
-- As a user, I want to be able to delete a vehicle to my vehicles list
-- As a user, I want to be able to update information to a vehicle
-- As a user, I want to be able to see the current cost per kilometer for a vehicle
-- As a user, I want to be able to save my vehicles list to file (if I so choose)
-- As a user, I want to be able to load my vehicles list from file (if I so choose)
+- As a user, I want to be able to add a vehicle to my vehicles list.
+- As a user, I want to be able to view the list of vehicles on my vehicles list.
+- As a user, I want to be able to delete a vehicle to my vehicles list.
+- As a user, I want to be able to update information to a vehicle.
+- As a user, I want to be able to see the current cost per kilometer for a vehicle.
+- As a user, I want to be able to save my vehicles list to file (if I so choose).
+- As a user, I want to be able to load my vehicles list from file (if I so choose).
+- As a user, when I launch the application, I want to log in with the status I last saved manually.
+- As a user, I want the ability to delete my account and all associated files.
 
 
 ---

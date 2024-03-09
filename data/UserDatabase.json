@@ -1,1 +1,25 @@
-{"userDatabase": []}
+{"userDatabase": [{
+    "userVehicles": [
+        {
+            "currentMileage": 123124,
+            "vehicleName": "BJUAS123",
+            "purchaseCost": 123442,
+            "otherExpenses": 1.23414512E8,
+            "monthlyExpenses": 123124,
+            "monthsOwned": 123,
+            "chargingCost": 0,
+            "vehicleType": "ElectricCar"
+        },
+        {
+            "currentMileage": 0,
+            "vehicleName": "sdjgo123",
+            "purchaseCost": 1241241,
+            "otherExpenses": 0,
+            "monthlyExpenses": 0,
+            "monthsOwned": 0,
+            "chargingCost": 0,
+            "vehicleType": "ElectricCar"
+        }
+    ],
+    "userName": "frank"
+}]}
