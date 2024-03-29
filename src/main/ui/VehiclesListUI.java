@@ -100,7 +100,8 @@ public class VehiclesListUI {
                 if (selectedVehicleName != null) {
                     driveCostProGUI.vehicleManagement(selectedVehicleName);
                 } else {
-                    JOptionPane.showMessageDialog(mainPanel, "Please select a vehicle.", "No Vehicle Selected", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(mainPanel, "Please select a vehicle.",
+                            "No Vehicle Selected", JOptionPane.WARNING_MESSAGE);
                 }
             }
         });
@@ -118,7 +119,8 @@ public class VehiclesListUI {
                     getAllVehicleNames();
                     updateVehicleList();
                 } else {
-                    JOptionPane.showMessageDialog(mainPanel, "Please select a vehicle to delete.", "No Vehicle Selected", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(mainPanel, "Please select a vehicle to delete.",
+                            "No Vehicle Selected", JOptionPane.WARNING_MESSAGE);
                 }
             }
         });
