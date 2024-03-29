@@ -11,7 +11,6 @@ import java.awt.event.FocusListener;
 // and is empty, the hint is shown again. This class enhances user
 // experience by providing contextual cues within text fields.
 public class HintListener implements FocusListener {
-
     private String hint;
     private JTextField jtextField;
 

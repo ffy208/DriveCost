@@ -2,10 +2,9 @@ package ui;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.*;
+import java.util.ArrayList;
 
 import model.*;
 
@@ -24,6 +23,8 @@ public class VehiclesListUI {
     private JButton deleteBtn = new JButton("Delete");
     private JButton backBtn = new JButton("Back");
     private JButton exitBtn = new JButton("Exit");
+    private JButton filterBtn = new JButton("Filter");
+    private JTextField filterField = new JTextField(10);
     private DriveCostProGUI driveCostProGUI;
     private ArrayList<String> vehicleNames;
 
@@ -32,16 +33,16 @@ public class VehiclesListUI {
     // EFFECTS: Constructs a VehiclesListUI, initializes the UI components,
     // and sets up action listeners for buttons.
     public VehiclesListUI(DriveCostProGUI driveCostProGUI) {
-        vehicleNames = new ArrayList<>();
         this.driveCostProGUI = driveCostProGUI;
-        this.setLayout();
-        this.selectBtnListener();
-        this.deleteBtnListener();
-        this.backBtnListener();
-        this.exitBtnListener();
-        this.addBtnListener();
+        vehicleNames = new ArrayList<>();
+        setLayout();
+        selectBtnListener();
+        deleteBtnListener();
+        backBtnListener();
+        exitBtnListener();
+        addBtnListener();
+        filterBtnListener();
     }
-
 
     // MODIFIES: this
     // EFFECTS: Initializes and sets up the layout of the main
@@ -52,9 +53,6 @@ public class VehiclesListUI {
         scrollPane = new JScrollPane(listbox);
         model = new DefaultListModel<>();
         getAllVehicleNames();
-        for (String name : vehicleNames) {
-            model.addElement(name);
-        }
         listbox.setModel(model);
         mainPanel.add(scrollPane, BorderLayout.CENTER);
         JPanel buttonPanel = new JPanel();
@@ -64,28 +62,45 @@ public class VehiclesListUI {
         buttonPanel.add(backBtn);
         buttonPanel.add(exitBtn);
         mainPanel.add(buttonPanel, BorderLayout.SOUTH);
-    }
-
-    private ArrayList<String> getAllVehicleNames() {
-        vehicleNames = new ArrayList<>();
-        for (Vehicle vehicle : driveCostProGUI.currentUser.getAllVehicles()) {
-            vehicleNames.add(vehicle.getName());
-        }
-        return vehicleNames;
+        JPanel filterPanel = new JPanel();
+        filterPanel.add(new JLabel("Filter:"));
+        filterPanel.add(filterField);
+        filterPanel.add(filterBtn);
+        mainPanel.add(filterPanel, BorderLayout.NORTH);
+        updateVehicleList();
     }
 
     // MODIFIES: this
-    // EFFECTS: Adds an action listener to the select button that allows the user to manage the selected vehicle.
+    // EFFECTS: Retrieves all vehicle names from the current user's list of vehicles
+    // and stores them in the vehicleNames list.
+    private void getAllVehicleNames() {
+        vehicleNames.clear();
+        for (Vehicle vehicle : driveCostProGUI.currentUser.getAllVehicles()) {
+            vehicleNames.add(vehicle.getName());
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: Updates the list model with the names of vehicles stored in the
+    // vehicleNames list. Clears the model before adding new elements.
+    private void updateVehicleList() {
+        model.clear();
+        for (String name : vehicleNames) {
+            model.addElement(name);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: Adds an action listener to the select button that allows
+    // the user to manage the selected vehicle.
     private void selectBtnListener() {
         selectBtn.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 String selectedVehicleName = listbox.getSelectedValue();
                 if (selectedVehicleName != null) {
                     driveCostProGUI.vehicleManagement(selectedVehicleName);
                 } else {
-                    JOptionPane.showMessageDialog(mainPanel, "Please select a vehicle.",
-                            "No Vehicle Selected", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(mainPanel, "Please select a vehicle.", "No Vehicle Selected", JOptionPane.WARNING_MESSAGE);
                 }
             }
         });
@@ -96,15 +111,14 @@ public class VehiclesListUI {
     // selected vehicle from the user's list and updates the UI.
     private void deleteBtnListener() {
         deleteBtn.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 String selectedVehicleName = listbox.getSelectedValue();
                 if (selectedVehicleName != null) {
                     driveCostProGUI.deleteVehicle(selectedVehicleName);
-                    model.removeElement(selectedVehicleName); // Remove from UI
+                    getAllVehicleNames();
+                    updateVehicleList();
                 } else {
-                    JOptionPane.showMessageDialog(mainPanel, "Please select a vehicle to delete.",
-                            "No Vehicle Selected", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(mainPanel, "Please select a vehicle to delete.", "No Vehicle Selected", JOptionPane.WARNING_MESSAGE);
                 }
             }
         });
@@ -115,7 +129,6 @@ public class VehiclesListUI {
     // for adding a new vehicle.
     private void addBtnListener() {
         addBtn.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 driveCostProGUI.displayAddVehicleUI();
             }
@@ -127,7 +140,6 @@ public class VehiclesListUI {
     // to the main functions UI.
     private void backBtnListener() {
         backBtn.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 driveCostProGUI.displayMainFunctionsUI();
             }
@@ -139,13 +151,33 @@ public class VehiclesListUI {
     // that initiates the application's exit procedure.
     private void exitBtnListener() {
         exitBtn.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 driveCostProGUI.exit();
             }
         });
     }
 
+    // MODIFIES: this
+    // EFFECTS: Adds an action listener to the filter button that updates the list
+    // to show only vehicles matching the filter text. Filters based on whether vehicle
+    // names contain the filter text, ignoring case.
+    private void filterBtnListener() {
+        filterBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String filterText = filterField.getText();
+                ArrayList<String> filteredNames = new ArrayList<>();
+                for (String name : vehicleNames) {
+                    if (name.toLowerCase().contains(filterText.toLowerCase())) {
+                        filteredNames.add(name);
+                    }
+                }
+                model.clear();
+                for (String name : filteredNames) {
+                    model.addElement(name);
+                }
+            }
+        });
+    }
 
     // EFFECTS: Returns the main panel containing all UI components of the VehiclesListUI.
     public JPanel getPanel() {

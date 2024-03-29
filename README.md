@@ -54,7 +54,8 @@ ___
 There is a add a vehicle button in the bottom area, which can be use as add Xs to Y. In the previous page there 
 also have a add a vehicle button.
 - You can generate the second required action related to the user story "adding multiple Xs to a Y" by choose 
-the delete button which allow user to delete the vehicle from their vehicle list/panel.
+the delete button which allow user to delete the vehicle from their vehicle list/panel. In addition, there is a filter
+function which allow to looking for specific name of the vehicle.
 - You can locate my visual component by: in the login page, the Login and Register button all have a small icon, 
 in addition, after login the main function panel has a picture as the background.
 - You can save the state of my application by exit button that in any panel, once click exit, it will pop-up 

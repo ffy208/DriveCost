@@ -295,6 +295,5 @@ public class DriveCostProGUI extends JFrame {
         } else {
             System.out.println("Failed to delete user data file: " + jsonStore);
         }
-
     }
 }
