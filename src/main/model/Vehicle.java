@@ -54,8 +54,16 @@ public abstract class Vehicle implements Writable {
         return this.vehicleName;
     }
 
+    public void setName(String name) {
+        this.vehicleName = name;
+    }
+
     public double getPurchaseCost() {
         return this.purchaseCost;
+    }
+
+    public void setPurchaseCost(double cost) {
+        this.purchaseCost = cost;
     }
 
     public void setMonthlyExpenses(double monthlyExpenses) {

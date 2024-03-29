@@ -5,13 +5,14 @@ import org.json.JSONObject;
 import persistence.Writable;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
 
 // Represents a DriveCostPro user having a name and their List Cars.
 public class User implements Writable {
-    private final String userName;               // User's name
+    private String userName;               // User's name
     // private String password;                     // User's password
     private final List<Vehicle> userVehicles;    // User's vehicles in a list
 
@@ -92,9 +93,25 @@ public class User implements Writable {
         return allVehiclesInfo.toString();
     }
 
+    //REQUIRES: name is not empty
+    //EFFECTS: return the Vehicle by the name
+    public Vehicle findVehicleByName(String name) {
+        for (Vehicle vehicle : userVehicles) {
+            if (vehicle.getName().equals(name)) {
+                return vehicle;
+            }
+        }
+        return null;
+    }
+
+
     // !!! Put all simple setter and getter methods below
     public String getUserName() {
         return this.userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public List<Vehicle> getAllVehicles() {

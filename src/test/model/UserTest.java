@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class UserTest {
     private User testUser;
@@ -135,6 +134,13 @@ public class UserTest {
         assertNotEquals(testUser1, null);
         assertNotEquals(testUser1, new Object());
         assertEquals(testUser1, testUser1);
+    }
+
+    @Test
+    void testFindVehicleByName() {
+        testUser.addVehicle(testCar1);
+        assertEquals(testCar1, testUser.findVehicleByName("car1"));
+        assertNull(testUser.findVehicleByName("car100"));
     }
 
 

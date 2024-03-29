@@ -46,8 +46,21 @@ ___
 - As a user, I want to be able to load my vehicles list from file (if I so choose).
 - As a user, when I launch the application, I want to log in with the status I last saved manually.
 - As a user, I want the ability to delete my account and all associated files.
+---
+# Instructions for Grader
 
-
+- You can generate the first required action related to the user story "adding multiple Xs to a Y" by choose
+  the view my vehicles list, there is a panel which shows all the vehicles already been added to current user.
+There is a add a vehicle button in the bottom area, which can be use as add Xs to Y. In the previous page there 
+also have a add a vehicle button.
+- You can generate the second required action related to the user story "adding multiple Xs to a Y" by choose 
+the delete button which allow user to delete the vehicle from their vehicle list/panel.
+- You can locate my visual component by: in the login page, the Login and Register button all have a small icon, 
+in addition, after login the main function panel has a picture as the background.
+- You can save the state of my application by exit button that in any panel, once click exit, it will pop-up 
+the save data and exit option.
+- You can reload the state of my application by pop-up windows that are displayed when the application starts, it will
+provide options to reload the data or start as a new.
 ---
 ### Reference
 UBC CPSC210, JsonSerializationDemo, (2021), GitHub repository, https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
