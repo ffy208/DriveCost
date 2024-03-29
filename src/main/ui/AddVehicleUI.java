@@ -161,7 +161,7 @@ public class AddVehicleUI {
 
     // MODIFIES: this
     // EFFECTS: Creates and returns a JPanel for entering the gasoline cost
-    //         for GasolineCar vehicles。 This panel is only applicable if
+    //         for GasolineCar vehicles This panel is only applicable if
     //         the vehicle being added is a GasolineCar.
     private JPanel gasolineCostPanel() {
         JPanel panel = new JPanel();

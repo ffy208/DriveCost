@@ -45,7 +45,7 @@ public class MainFunctionsUI {
         bgPanel.setBounds(0, 0, WIDTH, HEIGHT);
         layeredPane.add(bgPanel, Integer.valueOf(JLayeredPane.DEFAULT_LAYER));
         mainPanel = new JPanel();
-        mainPanel.setOpaque(false); // 设置主面板透明，以便背景显示
+        mainPanel.setOpaque(false);
         mainPanel.setBounds(0, 0, WIDTH, HEIGHT);
         mainPanel.add(viewMyVehiclesBtn);
         mainPanel.add(addVehicleBtn);
