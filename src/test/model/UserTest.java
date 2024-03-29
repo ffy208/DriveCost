@@ -143,5 +143,11 @@ public class UserTest {
         assertNull(testUser.findVehicleByName("car100"));
     }
 
+    @Test
+    void testSetUserName() {
+        testUser.setUserName("AAA");
+        assertEquals("AAA", testUser.getUserName());
+    }
+
 
 }

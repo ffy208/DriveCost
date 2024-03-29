@@ -22,6 +22,18 @@ public class VehicleTest {
     }
 
     @Test
+    void testSetName() {
+        testCar1.setName("car5");
+        assertEquals("car5", testCar1.getName());
+    }
+
+    @Test
+    void testSetPurchaseCost() {
+        testCar1.setPurchaseCost(234.56);
+        assertEquals(234.56, testCar1.getPurchaseCost());
+    }
+
+    @Test
     void testToJson() {
 
     }
