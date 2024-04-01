@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -98,11 +100,15 @@ public class UserDatabaseTest {
         for (Event next : el) {
             l.add(next.toString());
         }
-        assertTrue(l.get(0).contains("New user: John has been created."));
-        assertTrue(l.get(1).contains("New user: Peter has been created."));
-        assertTrue(l.get(2).contains("A1"));
-        assertTrue(l.get(3).contains("A2"));
-        assertTrue(l.get(4).contains("A3"));
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(bytes));
+        testUserDatabase.printLog();
+
+        assertTrue(bytes.toString().contains("New user: John has been created."));
+        assertTrue(bytes.toString().contains("New user: Peter has been created."));
+        assertTrue(bytes.toString().contains("A1"));
+        assertTrue(bytes.toString().contains("A2"));
+        assertTrue(bytes.toString().contains("A3"));
     }
 
 }
