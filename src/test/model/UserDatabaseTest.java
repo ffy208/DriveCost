@@ -4,6 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class UserDatabaseTest {
@@ -80,6 +83,26 @@ public class UserDatabaseTest {
         assertEquals(1, testUserDatabase.getUserDatabase().size());
         assertFalse(testUserDatabase.removeUser(testUser2));
         assertEquals(1, testUserDatabase.getUserDatabase().size());
+    }
+
+    @Test
+    public void testPrintLog() {
+        Event e1 = new Event("A1");
+        Event e2 = new Event("A2");
+        Event e3 = new Event("A3");
+        EventLog el = EventLog.getInstance();
+        el.logEvent(e1);
+        el.logEvent(e2);
+        el.logEvent(e3);
+        List<String> l = new ArrayList<String>();
+        for (Event next : el) {
+            l.add(next.toString());
+        }
+        assertTrue(l.get(0).contains("New user: John has been created."));
+        assertTrue(l.get(1).contains("New user: Peter has been created."));
+        assertTrue(l.get(2).contains("A1"));
+        assertTrue(l.get(3).contains("A2"));
+        assertTrue(l.get(4).contains("A3"));
     }
 
 }
