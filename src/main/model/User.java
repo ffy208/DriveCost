@@ -17,11 +17,12 @@ public class User implements Writable {
     private final List<Vehicle> userVehicles;    // User's vehicles in a list
 
     //REQUIRES: name has a non-zero length
-    //EFFECTS: username = name, and create a new userVehicles list
+    //EFFECTS: username = name, and create a new userVehicles list, and log the event.
     public User(String name) {
         this.userName = name;
         // this.password = password;
         userVehicles = new ArrayList<>();
+        EventLog.getInstance().logEvent(new Event("New user: " + this.userName + " has been created."));
     }
 
     // EFFECTS: returns this user with all filed in JSON
@@ -64,21 +65,27 @@ public class User implements Writable {
 
     //MODIFIES: this
     //EFFECTS: add the given vehicle to userVehicles
-    //         return true for success, false otherwise
+    //         return true for success, false otherwise, and log the event.
     public void addVehicle(Vehicle vehicle) {
         if (!(userVehicles.contains(vehicle))) {
             this.userVehicles.add(vehicle);
+            EventLog.getInstance().logEvent(new Event(vehicle.getName()
+                    + " has been added to " + this.userName + "'s Vehicle list."));
         }
     }
 
     // MODIFIES: this
     // EFFECTS: remove the given vehicle from userVehicles
-    //         return true for success, false otherwise
+    //         return true for success, false otherwise, and log the event for both.
     public boolean removeVehicle(Vehicle vehicle) {
         if (userVehicles.contains(vehicle)) {
             this.userVehicles.remove(vehicle);
+            EventLog.getInstance().logEvent(new Event(vehicle.getName()
+                    + " has been removed from " + this.userName + "'s Vehicle list."));
             return true;
         }
+        EventLog.getInstance().logEvent(new Event(vehicle.getName()
+                + " removed failed from " + this.userName + "'s Vehicle list."));
         return false;
     }
 
@@ -104,14 +111,18 @@ public class User implements Writable {
         return null;
     }
 
+    //MODIFIES: this
+    //EFFECTS: set username as a new username and log event
+    public void setUserName(String userName) {
+        String preName = this.userName;
+        this.userName = userName;
+        EventLog.getInstance().logEvent(new Event("User: " + preName
+                + " changed to new name: " + this.userName + "."));
+    }
 
     // !!! Put all simple setter and getter methods below
     public String getUserName() {
         return this.userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public List<Vehicle> getAllVehicles() {

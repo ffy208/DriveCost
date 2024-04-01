@@ -63,5 +63,45 @@ the save data and exit option.
 - You can reload the state of my application by pop-up windows that are displayed when the application starts, it will
 provide options to reload the data or start as a new.
 ---
+# Phase 4: Task 2
+- Sun Mar 31 23:06:41 PDT 2024
+- New user: User1 has been created.
+- Sun Mar 31 23:06:41 PDT 2024
+- New Electric Vehicle EV1 has been created with purchase cost: $1241.12
+- Sun Mar 31 23:06:41 PDT 2024
+- Vehicle EV1 changed monthly expenses to: 1224.0
+- Sun Mar 31 23:06:41 PDT 2024
+- Vehicle EV1 changed other expenses to: 1234.0
+- Sun Mar 31 23:06:41 PDT 2024
+- Vehicle EV1 changed months owned to: 12
+- Sun Mar 31 23:06:41 PDT 2024
+- Vehicle EV1 changed current mileage to: 12445 KM
+- Sun Mar 31 23:06:41 PDT 2024
+- Vehicle EV1 charging cost change to: $1243.0 in total.
+- Sun Mar 31 23:06:41 PDT 2024
+- EV1 has been added to User1's Vehicle list.
+- Sun Mar 31 23:06:41 PDT 2024
+- User User1 has been added to Database.
+- Sun Mar 31 23:06:53 PDT 2024
+- Vehicle EV1 cost per KM: $1.4789971876255523
+- Sun Mar 31 23:07:26 PDT 2024
+- New Gasoline Vehicle Car1 has been created with purchase cost: $12441.0
+- Sun Mar 31 23:07:26 PDT 2024
+- Vehicle Car1:
+- Monthly expenses change to: $123.0 per month.
+- Other expenses change to: $1234.0 in total.
+- Months owned change to: 23 months.
+- Gasoline cost change to: 5485.0 in total.
+- Current mileage change to: 42445 in KM.
+- Sun Mar 31 23:07:26 PDT 2024
+- Car1 has been added to User1's Vehicle list.
+- Sun Mar 31 23:07:30 PDT 2024
+- EV1 has been removed from User1's Vehicle list.
+- Sun Mar 31 23:07:39 PDT 2024
+- User: User1 changed to new name: User2.
+- Sun Mar 31 23:07:42 PDT 2024
+- User: User2 has been removed from Database
+---
 ### Reference
-UBC CPSC210, JsonSerializationDemo, (2021), GitHub repository, https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
+- UBC CPSC210, JsonSerializationDemo, (2021), GitHub repository, https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
+- UBC CPSC210, AlarmSystem, (2019), GitHub repository, https://github.students.cs.ubc.ca/CPSC210/AlarmSystem.git

@@ -9,11 +9,12 @@ import persistence.JsonReader;
 import persistence.JsonWriter;
 
 import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 
 // Serves as the main graphical user interface for the DriveCostPro application.
 // It orchestrates user interactions for managing a vehicle fleet, including
@@ -48,14 +49,41 @@ public class DriveCostProGUI extends JFrame {
         super();
         userDatabase = new UserDatabase();
         this.setTitle(version);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setSize(WIDTH, HEIGHT);
         jsonDatabaseWriter = new JsonDatabaseWriter(JSON_STORE_DATABASE);
         jsonDatabaseReader = new JsonDatabaseReader(JSON_STORE_DATABASE);
         runApp();
         this.setLocationRelativeTo(null);
+
+        this.addWindowListener(new WindowAdapter() {
+            /**
+             * Invoked when a window is in the process of being closed.
+             * The close operation can be overridden at this point.
+             *
+             * //@param e
+             */
+            @Override
+            public void windowClosing(WindowEvent e) {
+                userDatabase.printLog();
+                System.exit(0);
+            }
+
+            /**
+             * Invoked when a window has been closed.
+             *
+             * //@param e
+             */
+            @Override
+            public void windowClosed(WindowEvent e) {
+                System.out.println("Frame closed");
+            }
+        });
+
         this.setVisible(true);
+
     }
+
 
     // MODIFIES: this
     // EFFECTS: Prompts the user to choose between loading data or continuing without loading.
@@ -225,12 +253,14 @@ public class DriveCostProGUI extends JFrame {
     // EFFECTS: Prompts the user to save data and exit. Saves the UserDatabase
     // to file if confirmed, then exits. Exits directly if saving is declined.
     // Returns to the app if canceled.
-    public void exit() {
+    public void saveAndExitOption() {
         int result = JOptionPane.showConfirmDialog(null, "Do you want to save the data and exit?");
         if (result == JOptionPane.YES_OPTION) {
             saveUserDatabase();
+            userDatabase.printLog();
             System.exit(0);
         } else if (result == JOptionPane.NO_OPTION) {
+            userDatabase.printLog();
             System.exit(0);
         } else {
             // Back nothing and return to the app
@@ -249,7 +279,7 @@ public class DriveCostProGUI extends JFrame {
         } catch (FileNotFoundException e) {
             JOptionPane.showMessageDialog(null,
                     "Unable to write to file: " + JSON_STORE_DATABASE);
-            exit();
+            saveAndExitOption();
         }
     }
 
@@ -269,7 +299,7 @@ public class DriveCostProGUI extends JFrame {
                 + currentUser.getUserName() + "? \nThis operation cannot be undone.");
         if (result == JOptionPane.YES_OPTION) {
             if (userDatabase.removeUser(currentUser)) {
-                deleteUserFile();
+                //deleteUserFile();
                 currentUser = null;
                 saveUserDatabase();
                 JOptionPane.showMessageDialog(null,
@@ -285,15 +315,15 @@ public class DriveCostProGUI extends JFrame {
         }
     }
 
-    // MODIFIES: File system
-    // EFFECTS: Deletes the current user's data file.
-    // Prints a message indicating success or failure.
-    private void deleteUserFile() {
-        File file = new File(jsonStore);
-        if (file.delete()) {
-            System.out.println("Deleted user data file: " + jsonStore);
-        } else {
-            System.out.println("Failed to delete user data file: " + jsonStore);
-        }
-    }
+//    // MODIFIES: File system
+//    // EFFECTS: Deletes the current user's data file.
+//    // Prints a message indicating success or failure.
+//    private void deleteUserFile() {
+//        File file = new File(jsonStore);
+//        if (file.delete()) {
+//            System.out.println("Deleted user data file: " + jsonStore);
+//        } else {
+//            System.out.println("Failed to delete user data file: " + jsonStore);
+//        }
+//    }
 }

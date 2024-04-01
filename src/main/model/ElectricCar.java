@@ -8,10 +8,12 @@ public class ElectricCar extends Vehicle {
     private final String vehicleType = "ElectricCar";
 
     //REQUIRES: name has a non-zero length, purchaseCost =>  0;
-    //EFFECTS: Call super to assign name and purchaseCost. Initialize charging cost as 0.
+    //EFFECTS: Call super to assign name and purchaseCost. Initialize charging cost as 0, and log the event.
     public ElectricCar(String name, double purchaseCost) {
         super(name, purchaseCost);
         this.chargingCost = 0;
+        EventLog.getInstance().logEvent(new Event("New Electric Vehicle "
+                + name + " has been created with purchase cost: $" + Double.toString(purchaseCost)));
     }
 
     // EFFECTS: returns this Car in JSON
@@ -36,7 +38,7 @@ public class ElectricCar extends Vehicle {
         return super.totalCostUntilToday() + this.chargingCost;
     }
 
-    // EFFECTS: calculate the cost per kilometer
+    // EFFECTS: calculate the cost per kilometer, and log the event.
     @Override
     public double costPerKilometer() {
         double costPerKilometer;
@@ -45,6 +47,8 @@ public class ElectricCar extends Vehicle {
         } else {
             costPerKilometer = totalCostUntilToday() / this.currentMileage;
         }
+        EventLog.getInstance().logEvent(new Event("Vehicle "
+                + this.vehicleName + " cost per KM: $" + Double.toString(costPerKilometer)));
         return costPerKilometer;
     }
 
@@ -59,18 +63,30 @@ public class ElectricCar extends Vehicle {
     }
 
     //MODIFIES: this
-    //EFFECTS: update vehicle information.
+    //EFFECTS: update vehicle information. and log the event.
     public void updateVehicleInfo(double monthlyExpenses, double otherExpenses, int monthsOwned,
                                   double chargingCost, int currentMileage) {
         super.updateVehicleInfo(monthlyExpenses, otherExpenses, monthsOwned, currentMileage);
         this.chargingCost = chargingCost;
+        EventLog.getInstance().logEvent(new Event("Vehicle "
+                + this.vehicleName + ":\nMonthly expenses change to: $"
+                + Double.toString(monthlyExpenses) + " per month.\n" + "Other expenses change to: $"
+                + Double.toString(otherExpenses) + " in total.\n" + "months owned change to: "
+                + Integer.toString(monthsOwned) + " months.\n" + "Charging cost change to: "
+                + Double.toString(chargingCost) + " in total.\n" + "Current mileage change to: "
+                + Integer.toString(currentMileage) + " in KM."));
+    }
+
+    //MODIFIES: this
+    //EFFECTS: update vehicle charging cost information. and log the event.
+    public void setChargingCost(double chargingCost) {
+        this.chargingCost = chargingCost;
+        EventLog.getInstance().logEvent(new Event("Vehicle "
+                + this.vehicleName + " charging cost change to: $"
+                + Double.toString(chargingCost) + " in total."));
     }
 
     // !!! Put all simple setter and getter methods below
-    public void setChargingCost(double chargingCost) {
-        this.chargingCost = chargingCost;
-    }
-
     public double getChargingCost() {
         return this.chargingCost;
     }

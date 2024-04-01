@@ -307,7 +307,7 @@ public class VehicleUI {
         exitBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                driveCostProGUI.exit();
+                driveCostProGUI.saveAndExitOption();
             }
         });
     }

@@ -49,49 +49,74 @@ public abstract class Vehicle implements Writable {
         this.currentMileage = currentMileage;
     }
 
+    //MODIFIES: this
+    //EFFECTS: update vehicle name, and log the event.
+    public void setName(String name) {
+        String preName = this.vehicleName;
+        this.vehicleName = name;
+        EventLog.getInstance().logEvent(new Event("Vehicle "
+                + preName + " changed name to: " + this.vehicleName));
+    }
+
+    //MODIFIES: this
+    //EFFECTS: update vehicle purchase cost, and log the event.
+    public void setPurchaseCost(double cost) {
+        this.purchaseCost = cost;
+        EventLog.getInstance().logEvent(new Event("Vehicle "
+                + this.vehicleName + " changed purchase cost to: " + this.purchaseCost));
+    }
+
+    //MODIFIES: this
+    //EFFECTS: update vehicle Monthly Expenses, and log the event.
+    public void setMonthlyExpenses(double monthlyExpenses) {
+        this.monthlyExpenses = monthlyExpenses;
+        EventLog.getInstance().logEvent(new Event("Vehicle "
+                + this.vehicleName + " changed monthly expenses to: " + this.monthlyExpenses));
+    }
+
+    //MODIFIES: this
+    //EFFECTS: update vehicle Other Expenses, and log the event.
+    public void setOtherExpenses(double expenses) {
+        this.otherExpenses = expenses;
+        EventLog.getInstance().logEvent(new Event("Vehicle "
+                + this.vehicleName + " changed other expenses to: " + this.otherExpenses));
+    }
+
+    //MODIFIES: this
+    //EFFECTS: update vehicle months owned, and log the event.
+    public void setMonthsOwned(int monthsOwned) {
+        this.monthsOwned = monthsOwned;
+        EventLog.getInstance().logEvent(new Event("Vehicle "
+                + this.vehicleName + " changed months owned to: " + this.monthsOwned));
+    }
+
+    //MODIFIES: this
+    //EFFECTS: update vehicle Current Mileage and log the event.
+    public void setCurrentMileage(int mileage) {
+        this.currentMileage = mileage;
+        EventLog.getInstance().logEvent(new Event("Vehicle "
+                + this.vehicleName + " changed current mileage to: " + this.currentMileage + " KM"));
+    }
+
     // !!! Put all simple setter and getter methods below
     public String getName() {
         return this.vehicleName;
-    }
-
-    public void setName(String name) {
-        this.vehicleName = name;
     }
 
     public double getPurchaseCost() {
         return this.purchaseCost;
     }
 
-    public void setPurchaseCost(double cost) {
-        this.purchaseCost = cost;
-    }
-
-    public void setMonthlyExpenses(double monthlyExpenses) {
-        this.monthlyExpenses = monthlyExpenses;
-    }
-
     public double getMonthlyExpenses() {
         return this.monthlyExpenses;
-    }
-
-    public void setOtherExpenses(double expenses) {
-        this.otherExpenses = expenses;
     }
 
     public double getOtherExpenses() {
         return this.otherExpenses;
     }
 
-    public void setMonthsOwned(int monthsOwned) {
-        this.monthsOwned = monthsOwned;
-    }
-
     public int getMonthsOwned() {
         return this.monthsOwned;
-    }
-
-    public void setCurrentMileage(int mileage) {
-        this.currentMileage = mileage;
     }
 
     public int getCurrentMileage() {

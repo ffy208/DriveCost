@@ -154,7 +154,7 @@ public class VehiclesListUI {
     private void exitBtnListener() {
         exitBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                driveCostProGUI.exit();
+                driveCostProGUI.saveAndExitOption();
             }
         });
     }
