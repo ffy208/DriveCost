@@ -1,1 +1,13 @@
-{"userDatabase": []}
+{"userDatabase": [{
+    "userVehicles": [{
+        "currentMileage": 12444,
+        "vehicleName": "ABC",
+        "purchaseCost": 12345,
+        "otherExpenses": 123,
+        "monthlyExpenses": 1241,
+        "monthsOwned": 21,
+        "chargingCost": 1234,
+        "vehicleType": "ElectricCar"
+    }],
+    "userName": "frank"
+}]}

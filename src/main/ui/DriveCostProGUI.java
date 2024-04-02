@@ -11,7 +11,6 @@ import persistence.JsonWriter;
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,20 +22,13 @@ import java.util.ArrayList;
 // and user interface interaction.
 public class DriveCostProGUI extends JFrame {
     private static final String JSON_STORE_DATABASE = "./data/UserDatabase.json";
-    private String jsonStore;
     private UserDatabase userDatabase;
     protected User currentUser;
-    private ArrayList<String> usersList;
-    private JsonWriter jsonWriter;
-    private JsonReader jsonReader;
     private JsonDatabaseWriter jsonDatabaseWriter;
     private JsonDatabaseReader jsonDatabaseReader;
     private final String version = "DriveCostPro Ver.1.0_a";
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
-    private JComboBox<String> printCombo;
-    private JInternalFrame controlPanel;
-    private JPanel currentPanel;
     private LoginUI loginUI;
     private MainFunctionsUI mainFunctionsUI;
     private VehiclesListUI vehiclesListUI;
@@ -146,9 +138,6 @@ public class DriveCostProGUI extends JFrame {
         if (user != null) {
             JOptionPane.showMessageDialog(null, "Login successful. Welcome, " + username + "!");
             this.currentUser = user;
-            jsonStore = "./data/" + currentUser.getUserName() + ".json";
-            jsonWriter = new JsonWriter(jsonStore);
-            jsonReader = new JsonReader(jsonStore);
             displayMainFunctionsUI();
         } else {
             JOptionPane.showMessageDialog(null, "Login failed. User not found.");

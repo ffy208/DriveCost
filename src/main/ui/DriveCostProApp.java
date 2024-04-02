@@ -18,13 +18,12 @@ public class DriveCostProApp {
     private String jsonStore;
     private UserDatabase userDatabase;
     private User currentUser;
-    private ArrayList<String> usersList;
     private final Scanner input;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
     private JsonDatabaseWriter jsonDatabaseWriter;
     private JsonDatabaseReader jsonDatabaseReader;
-    boolean saved = false;
+    private boolean saved = false;
 
     // EFFECTS: constructs a DriveCostPro application, initializes the user list and scanner for input,
     //          then runs the application
