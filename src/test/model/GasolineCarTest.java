@@ -81,28 +81,28 @@ public class GasolineCarTest {
     @Test
     void testGetVehicleInfo() {
         assertEquals("car2:\n" +
-                "Total Cost Until Today:  200.0\n" +
-                "Current Mileage in KM: 1\n" +
-                "Cost Per Kilometer: 200.0", testCar2.getVehicleInfo());
+                "Total Cost Until Today: $200.0\n" +
+                "Current Mileage: 1 KM\n" +
+                "Cost Per Kilometer: $200.0", testCar2.getVehicleInfo());
         assertEquals("car3:\n" +
-                "Total Cost Until Today:  750.0\n" +
-                "Current Mileage in KM: 1000\n" +
-                "Cost Per Kilometer: 0.75", testCar3.getVehicleInfo());
+                "Total Cost Until Today: $750.0\n" +
+                "Current Mileage: 1000 KM\n" +
+                "Cost Per Kilometer: $0.75", testCar3.getVehicleInfo());
     }
 
     @Test
     void testUpdateVehicleInfo() {
         //Before change
         assertEquals("car2:\n" +
-                "Total Cost Until Today:  200.0\n" +
-                "Current Mileage in KM: 1\n" +
-                "Cost Per Kilometer: 200.0", testCar2.getVehicleInfo());
+                "Total Cost Until Today: $200.0\n" +
+                "Current Mileage: 1 KM\n" +
+                "Cost Per Kilometer: $200.0", testCar2.getVehicleInfo());
         testCar2.updateVehicleInfo(10.56, 204.7, 3, 200, 4000);
         //After change
         assertEquals("car2:\n" +
-                "Total Cost Until Today:  636.38\n" +
-                "Current Mileage in KM: 4000\n" +
-                "Cost Per Kilometer: 0.159095", testCar2.getVehicleInfo());
+                "Total Cost Until Today: $636.38\n" +
+                "Current Mileage: 4000 KM\n" +
+                "Cost Per Kilometer: $0.159095", testCar2.getVehicleInfo());
     }
 
     @Test
@@ -113,9 +113,9 @@ public class GasolineCarTest {
         assertEquals(0, testCar3.getCurrentMileage());
         assertEquals(750, testCar3.costPerKilometer());
         assertEquals("car3:\n" +
-                "Total Cost Until Today:  750.0\n" +
-                "Current Mileage in KM: 0\n" +
-                "Cost Per Kilometer: 750.0", testCar3.getVehicleInfo());
+                "Total Cost Until Today: $750.0\n" +
+                "Current Mileage: 0 KM\n" +
+                "Cost Per Kilometer: $750.0", testCar3.getVehicleInfo());
     }
 
     @Test
@@ -126,8 +126,8 @@ public class GasolineCarTest {
         assertEquals(100000, testCar3.getCurrentMileage());
         assertEquals(0.0075, testCar3.costPerKilometer());
         assertEquals("car3:\n" +
-                "Total Cost Until Today:  750.0\n" +
-                "Current Mileage in KM: 100000\n" +
-                "Cost Per Kilometer: 0.0075", testCar3.getVehicleInfo());
+                "Total Cost Until Today: $750.0\n" +
+                "Current Mileage: 100000 KM\n" +
+                "Cost Per Kilometer: $0.0075", testCar3.getVehicleInfo());
     }
 }

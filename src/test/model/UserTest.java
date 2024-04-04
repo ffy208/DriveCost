@@ -100,8 +100,8 @@ public class UserTest {
         testUser.addVehicle(testCar1);
         testCar1.setCurrentMileage(5);
         assertEquals("All Vehicles Information: \ncar1:" +
-                "\nTotal Cost Until Today:  100.0\nCurrent Mileage in KM: 5" +
-                "\nCost Per Kilometer: 20.0\n", testUser.viewUserVehicles());
+                "\nTotal Cost Until Today: $100.0\nCurrent Mileage: 5 KM" +
+                "\nCost Per Kilometer: $20.0\n", testUser.viewUserVehicles());
     }
 
     @Test
@@ -114,17 +114,17 @@ public class UserTest {
         testCar3.setCurrentMileage(82);
         assertEquals("All Vehicles Information: \n" +
                 "car1:\n" +
-                "Total Cost Until Today:  100.0\n" +
-                "Current Mileage in KM: 5\n" +
-                "Cost Per Kilometer: 20.0\n" +
+                "Total Cost Until Today: $100.0\n" +
+                "Current Mileage: 5 KM\n" +
+                "Cost Per Kilometer: $20.0\n" +
                 "car2:\n" +
-                "Total Cost Until Today:  200.0\n" +
-                "Current Mileage in KM: 12\n" +
-                "Cost Per Kilometer: 16.666666666666668\n" +
+                "Total Cost Until Today: $200.0\n" +
+                "Current Mileage: 12 KM\n" +
+                "Cost Per Kilometer: $16.666666666666668\n" +
                 "car3:\n" +
-                "Total Cost Until Today:  300.0\n" +
-                "Current Mileage in KM: 82\n" +
-                "Cost Per Kilometer: 3.658536585365854\n", testUser.viewUserVehicles());
+                "Total Cost Until Today: $300.0\n" +
+                "Current Mileage: 82 KM\n" +
+                "Cost Per Kilometer: $3.658536585365854\n", testUser.viewUserVehicles());
     }
 
     @Test

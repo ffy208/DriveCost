@@ -56,9 +56,9 @@ public class GasolineCar extends Vehicle {
     @Override
     public String getVehicleInfo() {
         String vehicleInfo;
-        vehicleInfo = vehicleName + ":\nTotal Cost Until Today:  $"
+        vehicleInfo = vehicleName + ":\nTotal Cost Until Today: $"
                 + totalCostUntilToday() + "\nCurrent Mileage: "
-                + currentMileage + "KM" + "\nCost Per Kilometer: $" + costPerKilometer();
+                + currentMileage + " KM" + "\nCost Per Kilometer: $" + costPerKilometer();
         return vehicleInfo;
     }
 
