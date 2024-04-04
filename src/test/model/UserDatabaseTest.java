@@ -87,28 +87,5 @@ public class UserDatabaseTest {
         assertEquals(1, testUserDatabase.getUserDatabase().size());
     }
 
-    @Test
-    public void testPrintLog() {
-        Event e1 = new Event("A1");
-        Event e2 = new Event("A2");
-        Event e3 = new Event("A3");
-        EventLog el = EventLog.getInstance();
-        el.logEvent(e1);
-        el.logEvent(e2);
-        el.logEvent(e3);
-        List<String> l = new ArrayList<String>();
-        for (Event next : el) {
-            l.add(next.toString());
-        }
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(bytes));
-        testUserDatabase.printLog();
-
-        assertTrue(bytes.toString().contains("New user: John has been created."));
-        assertTrue(bytes.toString().contains("New user: Peter has been created."));
-        assertTrue(bytes.toString().contains("A1"));
-        assertTrue(bytes.toString().contains("A2"));
-        assertTrue(bytes.toString().contains("A3"));
-    }
 
 }

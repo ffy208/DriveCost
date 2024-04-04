@@ -56,9 +56,9 @@ public class ElectricCar extends Vehicle {
     @Override
     public String getVehicleInfo() {
         String vehicleInfo;
-        vehicleInfo = vehicleName + ":\nTotal Cost Until Today:  "
-                + totalCostUntilToday() + "\nCurrent Mileage in KM: "
-                + currentMileage + "\nCost Per Kilometer: " + costPerKilometer();
+        vehicleInfo = vehicleName + ":\nTotal Cost Until Today:  $"
+                + totalCostUntilToday() + "\nCurrent Mileage: "
+                + currentMileage + " KM" + "\nCost Per Kilometer: $" + costPerKilometer();
         return vehicleInfo;
     }
 
@@ -72,9 +72,9 @@ public class ElectricCar extends Vehicle {
                 + this.vehicleName + ":\nMonthly expenses change to: $"
                 + Double.toString(monthlyExpenses) + " per month.\n" + "Other expenses change to: $"
                 + Double.toString(otherExpenses) + " in total.\n" + "months owned change to: "
-                + Integer.toString(monthsOwned) + " months.\n" + "Charging cost change to: "
+                + Integer.toString(monthsOwned) + " months.\n" + "Charging cost change to: $"
                 + Double.toString(chargingCost) + " in total.\n" + "Current mileage change to: "
-                + Integer.toString(currentMileage) + " in KM."));
+                + Integer.toString(currentMileage) + " KM."));
     }
 
     //MODIFIES: this

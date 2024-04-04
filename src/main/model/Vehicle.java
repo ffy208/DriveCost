@@ -63,7 +63,7 @@ public abstract class Vehicle implements Writable {
     public void setPurchaseCost(double cost) {
         this.purchaseCost = cost;
         EventLog.getInstance().logEvent(new Event("Vehicle "
-                + this.vehicleName + " changed purchase cost to: " + this.purchaseCost));
+                + this.vehicleName + " changed purchase cost to: $" + this.purchaseCost));
     }
 
     //MODIFIES: this
@@ -71,7 +71,7 @@ public abstract class Vehicle implements Writable {
     public void setMonthlyExpenses(double monthlyExpenses) {
         this.monthlyExpenses = monthlyExpenses;
         EventLog.getInstance().logEvent(new Event("Vehicle "
-                + this.vehicleName + " changed monthly expenses to: " + this.monthlyExpenses));
+                + this.vehicleName + " changed monthly expenses to: $" + this.monthlyExpenses));
     }
 
     //MODIFIES: this
@@ -79,7 +79,7 @@ public abstract class Vehicle implements Writable {
     public void setOtherExpenses(double expenses) {
         this.otherExpenses = expenses;
         EventLog.getInstance().logEvent(new Event("Vehicle "
-                + this.vehicleName + " changed other expenses to: " + this.otherExpenses));
+                + this.vehicleName + " changed other expenses to: $" + this.otherExpenses));
     }
 
     //MODIFIES: this
@@ -87,7 +87,7 @@ public abstract class Vehicle implements Writable {
     public void setMonthsOwned(int monthsOwned) {
         this.monthsOwned = monthsOwned;
         EventLog.getInstance().logEvent(new Event("Vehicle "
-                + this.vehicleName + " changed months owned to: " + this.monthsOwned));
+                + this.vehicleName + " changed months owned to: " + this.monthsOwned + " months"));
     }
 
     //MODIFIES: this

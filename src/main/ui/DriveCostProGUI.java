@@ -1,8 +1,6 @@
 package ui;
 
-import model.User;
-import model.UserDatabase;
-import model.Vehicle;
+import model.*;
 import persistence.JsonDatabaseReader;
 import persistence.JsonDatabaseWriter;
 import persistence.JsonReader;
@@ -57,7 +55,7 @@ public class DriveCostProGUI extends JFrame {
              */
             @Override
             public void windowClosing(WindowEvent e) {
-                userDatabase.printLog();
+                printLog();
                 System.exit(0);
             }
 
@@ -246,15 +244,23 @@ public class DriveCostProGUI extends JFrame {
         int result = JOptionPane.showConfirmDialog(null, "Do you want to save the data and exit?");
         if (result == JOptionPane.YES_OPTION) {
             saveUserDatabase();
-            userDatabase.printLog();
+            printLog();
             System.exit(0);
         } else if (result == JOptionPane.NO_OPTION) {
-            userDatabase.printLog();
+            printLog();
             System.exit(0);
         } else {
             // Back nothing and return to the app
         }
     }
+
+    // EFFECTS: print all Events in Event Log
+    public void printLog() {
+        for (Event e : EventLog.getInstance()) {
+            System.out.println(e.toString());
+        }
+    }
+
 
     // MODIFIES: JSON_STORE_DATABASE
     // EFFECTS: saves the UserDatabase to file

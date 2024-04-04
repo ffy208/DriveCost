@@ -82,14 +82,6 @@ public class UserDatabase implements Writable {
         return false;
     }
 
-    // MODIFIES: this
-    // EFFECTS: print all Events in Event Log
-    public void printLog() {
-        for (Event e : EventLog.getInstance()) {
-            System.out.println(e.toString());
-        }
-    }
-
     // !!! Put all simple setter and getter methods below
     public ArrayList<User> getUserDatabase() {
         return this.userDatabase;
