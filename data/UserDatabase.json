@@ -1,13 +1,51 @@
-{"userDatabase": [{
-    "userVehicles": [{
-        "currentMileage": 12444,
-        "vehicleName": "ABC",
-        "purchaseCost": 12345,
-        "otherExpenses": 123,
-        "monthlyExpenses": 1241,
-        "monthsOwned": 21,
-        "chargingCost": 1234,
-        "vehicleType": "ElectricCar"
-    }],
-    "userName": "frank"
-}]}
+{"userDatabase": [
+    {
+        "userVehicles": [
+            {
+                "currentMileage": 13000,
+                "vehicleName": "One Car",
+                "purchaseCost": 12456,
+                "otherExpenses": 1234,
+                "monthlyExpenses": 400,
+                "monthsOwned": 22,
+                "chargingCost": 1300,
+                "vehicleType": "ElectricCar"
+            },
+            {
+                "currentMileage": 31000,
+                "vehicleName": "Another Car",
+                "purchaseCost": 23500,
+                "otherExpenses": 2000,
+                "monthlyExpenses": 300,
+                "monthsOwned": 23,
+                "chargingCost": 800,
+                "vehicleType": "ElectricCar"
+            }
+        ],
+        "userName": "User"
+    },
+    {
+        "userVehicles": [],
+        "userName": "User1"
+    },
+    {
+        "userVehicles": [],
+        "userName": "Tester"
+    },
+    {
+        "userVehicles": [],
+        "userName": "Tester1"
+    },
+    {
+        "userVehicles": [],
+        "userName": "User123"
+    },
+    {
+        "userVehicles": [],
+        "userName": "Tester123"
+    },
+    {
+        "userVehicles": [],
+        "userName": "Tester2"
+    }
+]}

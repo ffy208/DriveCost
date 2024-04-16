@@ -132,10 +132,3 @@ ___
   time to carefully review the access level of each class, ensuring only the needed access is granted which enhance
   modularity and encapsulation.
 
----
-
-### Reference
-
-- UBC CPSC210, JsonSerializationDemo, (2021), GitHub
-  repository, https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
-- UBC CPSC210, AlarmSystem, (2019), GitHub repository, https://github.students.cs.ubc.ca/CPSC210/AlarmSystem.git
